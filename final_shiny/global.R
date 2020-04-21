@@ -11,6 +11,7 @@ library(scales)
 library(shinyWidgets)
 library(shinythemes)
 library(janitor)
+library(DT)
 
 
 # Load data
@@ -21,7 +22,8 @@ census <- read_csv('data/census17.csv')
 # Clean
 school <- school %>% clean_names()
 school$state_name <- state.name[match(school$state, state.abb)]
-school <- school %>% filter(overall_rank >= 1)
+school <- school %>% 
+    filter(overall_rank >= 1)
 
 # school_aid <- school %>% select(display_name, state, state_name, overall_rank, acceptance_rate, percent_receiving_aid, cost_after_aid)
 # school_aid_complete <- school_aid[complete.cases(school_aid),]
