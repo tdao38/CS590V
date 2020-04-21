@@ -10,6 +10,7 @@ library(shiny)
 library(scales)
 library(shinyWidgets)
 library(shinythemes)
+library(shinyjs)
 library(janitor)
 library(DT)
 

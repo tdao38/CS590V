@@ -1,81 +1,3 @@
-# ui <- dashboardPage(
-#   skin = 'red',
-#   # Application title
-#   dashboardHeader(title = "US Higher Education"),
-#   dashboardSidebar(
-#     menuItem("View by States", 
-#              tabName = "overview", 
-#              icon = icon("dashboard")),
-#     menuItem("Overview", 
-#              tabName = "stateview", 
-#              icon = icon("th"))
-#   ),
-#   dashboardBody(
-#     tabItems(
-#       tabItem(tabName = "overview",
-#               fluidRow(
-#                 column(2,
-#                        pickerInput(
-#                          inputId = "statePicker",
-#                          label = "Choose a state",
-#                          choices = c(state.name)
-#                        )),
-#                 column(6,
-#                        plotOutput("distPlot")),
-#                 column(4,
-#                        valueBoxOutput('popBox',
-#                                       width = 12),
-#                        valueBoxOutput('incomeBox',
-#                                       width = 12),
-#                        valueBoxOutput('unempBox',
-#                                       width = 12)
-#                 )
-#               ),
-#               tags$br(),
-#               fluidRow(
-#                 column(2, 
-#                        offset = 0, 
-#                        style='padding:0px;'),
-#                 column(5,
-#                        plotOutput('racePlot')),
-#                 column(5,
-#                        plotOutput('genderPlot'))
-#               ),
-#               tags$br(),
-#               fluidRow(
-#                 column(2, 
-#                        offset = 0, 
-#                        style='padding:0px;'),
-#                 column(10,
-#                        plotOutput('schoolPlot'))
-#               ),
-#               tags$br(),
-#               fluidRow(
-#                 column(2, 
-#                        offset = 0, 
-#                        style='padding:0px;'),
-#                 column(10,
-#                        plotlyOutput('aidScatterPlot'))
-#               )
-#       ),
-#       tabItem(tabName = 'stateview',
-#               fluidRow(
-#                 column(6,
-#                        tags$h4('Income distribution by state'),
-#                        plotOutput('incomeByStatePlot')),
-#                 column(6,
-#                        tags$h4('Unemployment distribution by state'),
-#                        plotOutput('unempByStatePlot'))
-#               ),
-#               tags$br(),
-#               tags$h4('Education Information'),
-#               fluidRow(
-#                 plotOutput('avgAceptancePlot')
-#               )
-#       )
-#     )
-#   )
-# )
 ui <- dashboardPage(
   skin = 'red',
   # Application title
@@ -94,6 +16,7 @@ ui <- dashboardPage(
       #          tabName = "stateview", 
       #          icon = icon("th")),
       menuItem("States",
+               icon = icon('map-marked-alt'),
                #startExpanded = TRUE,
                selectizeInput(
                  inputId = 'state_input',
@@ -102,6 +25,7 @@ ui <- dashboardPage(
                  selected = 'Massachusetts', 
                  multiple = TRUE)),
       menuItem("Tuition & Fees", 
+               icon = icon('money-bill'),
                #startExpanded = TRUE,
                sliderInput(
                  inputId = 'tuition_input',
@@ -111,6 +35,7 @@ ui <- dashboardPage(
                  value = c(5, 60000),
                  step = 1000)),
       menuItem("Standardized Scores",
+               icon = icon('book-open'),
                #startExpanded = TRUE,
                sliderInput(
                  inputId = 'sat_input',
@@ -124,13 +49,23 @@ ui <- dashboardPage(
                  min = 15,
                  max = 34,
                  value = c(15, 34))),
-      menuItem('Enrollment Size'),
+      menuItem('Enrollment Size',
+               icon = icon('users'),
+               sliderInput(
+                 inputId = 'enrollment_input',
+                 label = 'Undergraduate enrollment size',
+                 min = 1000,
+                 max = 55000,
+                 value = c(1000, 55000),
+                 step = 1000)),
       menuItem('Ranking',
+               icon = icon('arrow-up'),
                numericInput(
                  inputId = 'ranking_input',
                  label = 'See colleges of rank higher than',
                  value = 100)),
       menuItem('Institution Type',
+               icon = icon('university'),
                checkboxGroupInput(
                  inputId = 'inst_type_input',
                  label = 'Select institution type',
@@ -144,6 +79,7 @@ ui <- dashboardPage(
       column(
         width = 7,
         tags$h3('Academics'),
+        tags$h6('Click on a row to see more information about a school'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
@@ -155,6 +91,7 @@ ui <- dashboardPage(
       column(
         width = 5,
         tags$h3('Financials'),
+        tags$h6('Hover to a bubble to see more information'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
@@ -178,68 +115,5 @@ ui <- dashboardPage(
         )
       )
     )
-    # tabItems(
-    #   tabItem(tabName = "overview",
-    #           fluidRow(
-    #             column(2,
-    #                    pickerInput(
-    #                      inputId = "statePicker",
-    #                      label = "Choose a state",
-    #                      choices = c(state.name)
-    #                    )),
-    #             column(6,
-    #                    plotOutput("distPlot")),
-    #             column(4,
-    #                    valueBoxOutput('popBox',
-    #                                   width = 12),
-    #                    valueBoxOutput('incomeBox',
-    #                                   width = 12),
-    #                    valueBoxOutput('unempBox',
-    #                                   width = 12)
-    #             )
-    #           ),
-    #           tags$br(),
-    #           fluidRow(
-    #             column(2, 
-    #                    offset = 0, 
-    #                    style='padding:0px;'),
-    #             column(5,
-    #                    plotOutput('racePlot')),
-    #             column(5,
-    #                    plotOutput('genderPlot'))
-    #           ),
-    #           tags$br(),
-    #           fluidRow(
-    #             column(2, 
-    #                    offset = 0, 
-    #                    style='padding:0px;'),
-    #             column(10,
-    #                    plotOutput('schoolPlot'))
-    #           ),
-    #           tags$br(),
-    #           fluidRow(
-    #             column(2, 
-    #                    offset = 0, 
-    #                    style='padding:0px;'),
-    #             column(10,
-    #                    plotlyOutput('aidScatterPlot'))
-    #           )
-    #   ),
-    #   tabItem(tabName = 'stateview',
-    #           fluidRow(
-    #             column(6,
-    #                    tags$h4('Income distribution by state'),
-    #                    plotOutput('incomeByStatePlot')),
-    #             column(6,
-    #                    tags$h4('Unemployment distribution by state'),
-    #                    plotOutput('unempByStatePlot'))
-    #           ),
-    #           tags$br(),
-    #           tags$h4('Education Information'),
-    #           fluidRow(
-    #             plotOutput('avgAceptancePlot')
-    #           )
-    #   )
-    # )
   )
 )

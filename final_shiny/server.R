@@ -1,5 +1,30 @@
-server <- function(input, output) {
+server <- function(input, output, session) {
   #browser()
+  sendSweetAlert(
+    session = session,
+    title = 'US Higher Education Dashboard',
+    text = tags$span(
+      icon('school', "fa-3x"),
+      tags$hr(),
+      tags$h4('This visualization dashboard provides an overview about higher education in the United States.'), 
+      tags$h4('It can be an useful tool for people interested in exploring the overall academics scenario in the US,
+              especially for high school students or international students, who are in the process of
+              choosing potential colleges or estimating the scope of the college application competition.'),
+      tags$hr(),
+      tags$h4('We use data from US News university data and US Census data for this visualization.'),
+      tags$hr(),
+      tags$h4('Thank you for choosing our tool. We hope you have a great experience with the dashboard!'),
+      tags$hr(),
+      tags$h5(tags$b('Created by: '), 'Emily Dzwil, Thu Dao, Trang Tran'),
+      tags$h5('Final project for CS590V - Data Visualization'),
+      tags$h5('April, 2020')
+    ),
+    width = '50%',
+    btn_colors = 'salmon',
+    btn_labels = "Let's explore!",
+    html = TRUE
+  )
+  
   selectedData <- reactive({
     #browser()
     req(input$state_input,
@@ -17,6 +42,8 @@ server <- function(input, output) {
              (sat_avg <= input$sat_input[2] | is.na(sat_avg)) &
              (act_avg >= input$act_input[1] | is.na(act_avg)) &
              (act_avg <= input$act_input[2] | is.na(act_avg)) &
+             (enrollment >= input$enrollment_input[1] | is.na(enrollment)) &
+             (enrollment <= input$enrollment_input[2] | is.na(enrollment)) &
              (overall_rank <= input$ranking_input | is.na(overall_rank)) &
              (institutional_control %in% input$inst_type_input | is.na(institutional_control)))
     
@@ -25,7 +52,7 @@ server <- function(input, output) {
     return(filtered_df)
   })
   
-  #shared_df <- SharedData$new(filter_df)
+  #shared_df <- SharedData$new(selectedData)
   
   output$schools_tb_output <- renderDataTable({
     #browser()
@@ -34,7 +61,8 @@ server <- function(input, output) {
       arrange(overall_rank)
     DT::datatable(table_df,
                   rownames = FALSE,
-                  colnames = c('Rank', 'School Name', 'State', 'Average SAT', 'Average ACT')) %>%
+                  colnames = c('Rank', 'School Name', 'State', 'Average SAT', 'Average ACT'),
+                  selection = 'single') %>%
       formatStyle(
         'sat_avg',
         background = styleColorBar(selectedData()$sat_avg, 'lightsteelblue'),
@@ -51,6 +79,40 @@ server <- function(input, output) {
       )
   })
   
+  observeEvent(input$schools_tb_output_rows_selected,{
+    #browser()
+    if(is.null(input$schools_tb_output_rows_selected)){
+      return()
+    } else {
+      row_index <- input$schools_tb_output_rows_selected
+      subset_df <- selectedData()[row_index,]
+      
+      sendSweetAlert(
+        session = session,
+        title = paste0(subset_df$display_name),
+        text = tags$span(
+          tags$img(src = subset_df$primary_photo),
+          # tags$h3("With HTML tags",
+          #         style = "color: steelblue;"),
+          tags$br(),
+          tags$b('Location: '), paste0(subset_df$city, ', ', subset_df$state_name),
+          tags$br(),
+          tags$b('Undergraduate enrollment: '), paste0(format(subset_df$enrollment, big.mark = ',', scientific = FALSE)),
+          tags$br(),
+          tags$b('Acceptance rate: '), paste0(subset_df$acceptance_rate, '%'),
+          tags$br(),
+          tags$b('Tuition: '), paste0(format(subset_df$tuition, big.mark = ',', scientific = FALSE), '$'),
+          tags$br(),
+          tags$b('Percent Receiving Aid: '), paste0(subset_df$percent_receiving_aid, '%'),
+          tags$br(),
+          tags$b('Cost after aid: '), paste0(format(subset_df$cost_after_aid, big.mark = ',', scientific = FALSE), '$')
+        ),
+        width = '40%',
+        html = TRUE
+      )
+    }
+  })  
+  
   output$aidScatterPlot <- renderPlotly({
     #browser()
     selected_cost_type <- input$cost_type
@@ -60,11 +122,12 @@ server <- function(input, output) {
                  text = paste('School: ', display_name,
                               '<br>Acceptance rate: ', acceptance_rate, '%',
                               '<br>Percent receiving aid: ', percent_receiving_aid, '%',
-                              '<br>Tuition: ', format(tuition, big.mark = ',', scientific = FALSE), '$'))) +
+                              '<br>Tuition: ', format(tuition, big.mark = ',', scientific = FALSE), '$',
+                              '<br>Cost after aid: ', format(cost_after_aid, big.mark = ',', scientific = FALSE), '$'))) +
       geom_point(aes(size = selectedData()[[selected_cost_type]], fill = institutional_control, alpha = 0.5)) +
       ylab('Acceptance Rate') +
       xlab('Percent Receiving Aid') +
-      # scale_size_continuous(range = c(5, 10)) +
+      #scale_size_continuous(range = c(4, 7)) +
       # scale_y_continuous(expand=c(0,0)) +
       # coord_cartesian(clip = 'off') +
       #scale_color_discrete(name = 'Institution Type') +
