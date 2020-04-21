@@ -1,8 +1,16 @@
-
-
-packages(c("shinydashboard" , "tidyverse" , "usmap","ggplot2","ggmap",
-           "ggrepel", "GGally", "plotly","shiny", "scales","shinyWidgets",
-           "shinythemes", "janitor"))
+library(shinydashboard)
+library(tidyverse)
+library(usmap)
+library(ggplot2)
+library(ggmap)
+library(ggrepel)
+library(GGally)
+library(plotly)
+library(shiny)
+library(scales)
+library(shinyWidgets)
+library(shinythemes)
+library(janitor)
 
 
 # Load data
