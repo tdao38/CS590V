@@ -1,27 +1,30 @@
-library(shinydashboard)
-library(tidyverse)
-library(usmap)
-library(ggplot2)
-library(ggmap)
-library(ggrepel)
-library(GGally)
-library(plotly)
-library(shiny)
-library(scales)
-library(shinyWidgets)
-library(shinythemes)
-library(janitor)
+source('~/UMass/CS590V/final_shiny/utils.R', echo = TRUE)
 
+packages(c("shinydashboard", "tidyverse", "usmap", "ggplot2", "ggmap", "ggrepel", 
+           "GGally", "plotly", "shiny", "scales", "shinyWidgets", "shinythemes",
+           "janitor", "DT","leaflet","sp","rgdal", "sf", "htmltools"))
 
 # Load data
 school <- read_csv('data/school.csv')
 census <- read_csv('data/census17.csv')
-#census_p <- read_csv('data/ss15pusa.csv')
+school_loc <- read.csv("data/hd2018.csv") %>% 
+  select(INSTNM, LONGITUD, LATITUDE) %>% 
+  rename(display_name = INSTNM,
+         long = LONGITUD,
+         lat = LATITUDE)
 
 # Clean
 school <- school %>% clean_names()
 school$state_name <- state.name[match(school$state, state.abb)]
 school <- school %>% filter(overall_rank >= 1)
+
+school_loc$display_name <- gsub("-", " ", school_loc$display_name)
+school$display_name <- gsub("--", " ", school$display_name)
+
+school <- merge(x = school, y = school_loc, by = "display_name", all.x = TRUE)
+school$state_name <- as.factor(school$state_name)
+states <- readOGR(dsn = "data/cb_2016_us_state_500k.shp", encoding = "UTF-8", verbose = FALSE)
+
 
 # school_aid <- school %>% select(display_name, state, state_name, overall_rank, acceptance_rate, percent_receiving_aid, cost_after_aid)
 # school_aid_complete <- school_aid[complete.cases(school_aid),]
