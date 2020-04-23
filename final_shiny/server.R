@@ -72,16 +72,23 @@ server <- function(input, output, session) {
         backgroundSize = '95% 80%',
         backgroundRepeat = 'no-repeat',
         backgroundPosition = 'center'
+      ) %>%
+      formatStyle(
+        'display_name',
+        cursor = 'pointer'
       )
   })
   
-  observeEvent(input$schools_tb_output_rows_selected,{
+  observeEvent(input$schools_tb_output_cell_clicked,{
     #browser()
-    if(is.null(input$schools_tb_output_rows_selected)){
+    #if(is.null(input$schools_tb_output_cell_clicked)){
+    if(length(input$schools_tb_output_cell_clicked) == 0){
       return()
     } else {
-      row_index <- input$schools_tb_output_rows_selected
-      subset_df <- selectedData()[row_index,]
+      #row_index <- input$schools_tb_output_rows_selected
+      #subset_df <- selectedData()[row_index,]
+      school_chosen <- input$schools_tb_output_cell_clicked$value
+      subset_df <- selectedData() %>% filter(display_name == school_chosen)
       
       sendSweetAlert(
         session = session,

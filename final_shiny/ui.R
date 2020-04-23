@@ -98,7 +98,7 @@ ui <- dashboardPage(
       column(
         width = 7,
         tags$h3('Academics'),
-        tags$h6('Click on a row to see more information about a school'),
+        tags$h6('Click on a school name to see more information about a school'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
