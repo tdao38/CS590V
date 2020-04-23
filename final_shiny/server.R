@@ -26,7 +26,6 @@ server <- function(input, output, session) {
   )
   
   selectedData <- reactive({
-    #browser()
     req(input$state_input,
         input$tuition_input,
         input$sat_input,
@@ -36,7 +35,7 @@ server <- function(input, output, session) {
     
     filtered_df <- school %>%
       filter((state_name %in% input$state_input) &
-             (tuition >= input$tuition_input[1] | is.na(tuition))&
+             (tuition >= input$tuition_input[1] | is.na(tuition)) &
              (tuition <= input$tuition_input[2] | is.na(tuition)) &
              (sat_avg >= input$sat_input[1] | is.na(sat_avg)) &
              (sat_avg <= input$sat_input[2] | is.na(sat_avg)) &
@@ -46,14 +45,11 @@ server <- function(input, output, session) {
              (enrollment <= input$enrollment_input[2] | is.na(enrollment)) &
              (overall_rank <= input$ranking_input | is.na(overall_rank)) &
              (institutional_control %in% input$inst_type_input | is.na(institutional_control)))
-    
-    #shared_df <- SharedData$new(filtered_df)
-    
     return(filtered_df)
   })
-  
+
   #shared_df <- SharedData$new(selectedData)
-  
+
   output$schools_tb_output <- renderDataTable({
     #browser()
     table_df <- selectedData() %>%
@@ -138,7 +134,108 @@ server <- function(input, output, session) {
       hide_legend()
   })
   
-  #observe(print(str(selectedData())))
+  
+  output$map <- renderLeaflet({
+    spatial_df <- merge(states, selectedData(), by.x = "NAME", by.y = "state_name", duplicateGeoms = T)
+    spatial_df@data <- spatial_df@data %>%
+      filter(NAME %in% input$state_input) %>% 
+      distinct(NAME)
+    leaflet(spatial_df) %>% 
+      addTiles() %>% 
+      addProviderTiles(providers$Stamen.TonerLite) %>% 
+      setView(-98.483330, 38.712046, zoom = 4) %>%
+      addPolygons(fillColor = "#881c1c",
+                  fillOpacity = 0.2,
+                  color="#881c1c",
+                  weight = 0.3,
+                  smoothFactor = 0.15) %>%
+      addMarkers(~selectedData()$long, ~selectedData()$lat, label = selectedData()$display_name)
+  })
+  
+  
+  output$popBox <- renderValueBox({
+    income_df %>%
+      filter(state == tolower(input$state_input)) %>%
+      #select(Pop) %>%
+      .$Pop %>%
+      format(big.mark=",",scientific=FALSE) %>%
+      valueBox(
+        subtitle = "State Population",
+        color = "blue",
+        icon = icon("users")
+      )
+  })
+  
+  output$USPop <- renderValueBox({
+    valueBox(
+      subtitle = "U.S. Population (2017)",
+      "325.1 mil",
+      color = "blue"
+    )
+  })
+  
+
+  output$incomeBox <- renderValueBox({
+    income_df %>%
+      filter(state == tolower(input$state_input)) %>%
+      #select(AvgIncome) %>%
+      .$AvgIncome %>%
+      scales::dollar() %>%
+      valueBox(
+        subtitle = "Average Income",
+        color = "green",
+        icon = icon("dollar-sign")
+      )
+  })
+  
+  output$USincome <- renderValueBox({
+    valueBox(
+      subtitle = "U.S. Median Income (2017)",
+      "$61,372",
+      color = "green"
+    )
+  })
+
+  output$unempBox <- renderValueBox({
+    income_df %>%
+      filter(state == tolower(input$state_input)) %>%
+      mutate(AvgUnemployment = AvgUnemployment/100) %>%
+      #select(AvgUnemployment) %>%
+      .$AvgUnemployment %>%
+      percent() %>%
+      valueBox(
+        subtitle = "Average Unemployment",
+        color = "orange",
+        icon = icon("stats",lib='glyphicon')
+      )
+  })
+  
+  output$USunem <- renderValueBox({
+    valueBox(
+      subtitle = "U.S. Unemployment (2017)",
+      "4.1%",
+      color = "orange"
+    )
+  })
+  
+  
+  
+  
+  
+  
+  # observeEvent(input$map_shape_click, {
+  #   spatial_df <- merge(states, selectedData(), by.x = "NAME", by.y = "state_name", duplicateGeoms = T)
+  #   spatial_df@data <- spatial_df@data %>%
+  #     filter(NAME %in% input$state_input) %>% 
+  #     filter(NAME %in% input$map_shape_click) %>% 
+  #     distinct(NAME)
+  #   print(spatial_df@data)
+  # }) 
+
+  
+  
+
+  
 
   # output$distPlot <- renderPlot({
   #   # generate bins based on input$bins from ui.R
