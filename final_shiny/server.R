@@ -138,7 +138,10 @@ server <- function(input, output, session) {
       #theme(legend.position = 'none') + 
       theme_bw()
     ggplotly(p, tooltip = 'text') %>%
-      hide_legend()
+      #hide_legend()
+      layout(legend = list(orientation = "h", 
+                           x = 0.35,  
+                           y = -0.25)) 
   })
   
   
