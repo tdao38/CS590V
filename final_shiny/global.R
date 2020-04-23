@@ -14,8 +14,8 @@
 # library(janitor)
 # library(DT)
 
-source('~/UMass/CS590V/final_shiny/utils.R', echo = TRUE)
-
+#source('~/UMass/CS590V/final_shiny/utils.R', echo = TRUE)
+source('utils.R', echo = TRUE)
 
 packages(c("shinydashboard", "tidyverse", "usmap", "ggplot2", "ggmap", "ggrepel", 
            "GGally", "plotly", "shiny", "scales", "shinyWidgets", "shinythemes",
