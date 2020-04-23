@@ -138,7 +138,10 @@ server <- function(input, output, session) {
       #theme(legend.position = 'none') + 
       theme_bw()
     ggplotly(p, tooltip = 'text') %>%
-      hide_legend()
+      #hide_legend()
+      layout(legend = list(orientation = "h", 
+                           x = 0.35,  
+                           y = -0.25)) 
   })
   
   
@@ -183,7 +186,7 @@ server <- function(input, output, session) {
   
 
   output$incomeBox <- renderValueBox({
-    income_df %>%
+    income %>%
       filter(state == tolower(input$state_input)) %>%
       #select(AvgIncome) %>%
       .$AvgIncome %>%
@@ -204,7 +207,7 @@ server <- function(input, output, session) {
   })
 
   output$unempBox <- renderValueBox({
-    income_df %>%
+    income %>%
       filter(state == tolower(input$state_input)) %>%
       mutate(AvgUnemployment = AvgUnemployment/100) %>%
       #select(AvgUnemployment) %>%
@@ -257,7 +260,7 @@ server <- function(input, output, session) {
   # })
   # 
   # output$popBox <- renderValueBox({
-  #   income_df %>%
+  #   income %>%
   #     filter(state == tolower(input$statePicker)) %>%
   #     #select(Pop) %>%
   #     .$Pop %>%
@@ -270,7 +273,7 @@ server <- function(input, output, session) {
   # })
   # 
   # output$incomeBox <- renderValueBox({
-  #   income_df %>%
+  #   income %>%
   #     filter(state == tolower(input$statePicker)) %>%
   #     #select(AvgIncome) %>%
   #     .$AvgIncome %>%
@@ -283,7 +286,7 @@ server <- function(input, output, session) {
   # })
   # 
   # output$unempBox <- renderValueBox({
-  #   income_df %>%
+  #   income %>%
   #     filter(state == tolower(input$statePicker)) %>%
   #     mutate(AvgUnemployment = AvgUnemployment/100) %>%
   #     #select(AvgUnemployment) %>%

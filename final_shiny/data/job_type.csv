@@ -1,0 +1,261 @@
+"","state_name","job_type","pct"
+"1","Alabama","professional",28.0955223880597
+"2","Alabama","service",16.8298507462687
+"3","Alabama","office",22.555223880597
+"4","Alabama","construction",11.6059701492537
+"5","Alabama","production",20.9059701492537
+"6","Alaska","professional",31.8689655172414
+"7","Alaska","service",18.7275862068966
+"8","Alaska","office",20.3655172413793
+"9","Alaska","construction",14.7896551724138
+"10","Alaska","production",14.2448275862069
+"11","Arizona","professional",30.0066666666667
+"12","Arizona","service",22.5666666666667
+"13","Arizona","office",23.2266666666667
+"14","Arizona","construction",13.1533333333333
+"15","Arizona","production",11.0733333333333
+"16","Arkansas","professional",28.5066666666667
+"17","Arkansas","service",17.64
+"18","Arkansas","office",21.6
+"19","Arkansas","construction",13.008
+"20","Arkansas","production",19.256
+"21","California","professional",34.2120689655172
+"22","California","service",20.6551724137931
+"23","California","office",21.9603448275862
+"24","California","construction",12.4672413793103
+"25","California","production",10.7034482758621
+"26","Colorado","professional",35.03125
+"27","Colorado","service",19.9171875
+"28","Colorado","office",20.83125
+"29","Colorado","construction",14.5359375
+"30","Colorado","production",9.68125
+"31","Connecticut","professional",41.4125
+"32","Connecticut","service",18.0375
+"33","Connecticut","office",22.6
+"34","Connecticut","construction",8.1875
+"35","Connecticut","production",9.775
+"36","Delaware","professional",36.9
+"37","Delaware","service",18.5
+"38","Delaware","office",23.4333333333333
+"39","Delaware","construction",9.4
+"40","Delaware","production",11.7666666666667
+"41","District of Columbia","professional",61.7
+"42","District of Columbia","service",15.3
+"43","District of Columbia","office",16.7
+"44","District of Columbia","construction",2.7
+"45","District of Columbia","production",3.6
+"46","Florida","professional",31.2089552238806
+"47","Florida","service",21.2432835820896
+"48","Florida","office",24.9089552238806
+"49","Florida","construction",12.0746268656716
+"50","Florida","production",10.5776119402985
+"51","Georgia","professional",29.1578616352201
+"52","Georgia","service",17.6849056603774
+"53","Georgia","office",22.5540880503145
+"54","Georgia","construction",12.7308176100629
+"55","Georgia","production",17.8723270440252
+"56","Hawaii","professional",29.56
+"57","Hawaii","service",28.22
+"58","Hawaii","office",23.4
+"59","Hawaii","construction",8.26
+"60","Hawaii","production",10.54
+"61","Idaho","professional",29.8181818181818
+"62","Idaho","service",18.2409090909091
+"63","Idaho","office",20.6340909090909
+"64","Idaho","construction",16.4931818181818
+"65","Idaho","production",14.8272727272727
+"66","Illinois","professional",30.8049019607843
+"67","Illinois","service",18.3343137254902
+"68","Illinois","office",22.2823529411765
+"69","Illinois","construction",10.6480392156863
+"70","Illinois","production",17.9352941176471
+"71","Indiana","professional",28.7913043478261
+"72","Indiana","service",16.4902173913043
+"73","Indiana","office",20.9532608695652
+"74","Indiana","construction",10.9358695652174
+"75","Indiana","production",22.8260869565217
+"76","Iowa","professional",32.1232323232323
+"77","Iowa","service",16.3151515151515
+"78","Iowa","office",21.0626262626263
+"79","Iowa","construction",11.5777777777778
+"80","Iowa","production",18.9212121212121
+"81","Kansas","professional",34.0438095238095
+"82","Kansas","service",16.5209523809524
+"83","Kansas","office",20.3209523809524
+"84","Kansas","construction",14.0514285714286
+"85","Kansas","production",15.0647619047619
+"86","Kentucky","professional",28.6875
+"87","Kentucky","service",17.045
+"88","Kentucky","office",22.0033333333333
+"89","Kentucky","construction",12.1883333333333
+"90","Kentucky","production",20.0866666666667
+"91","Louisiana","professional",29.125
+"92","Louisiana","service",19.5984375
+"93","Louisiana","office",22.784375
+"94","Louisiana","construction",14.35625
+"95","Louisiana","production",14.1296875
+"96","Maine","professional",33.6375
+"97","Maine","service",18.8625
+"98","Maine","office",22.00625
+"99","Maine","construction",12.8125
+"100","Maine","production",12.66875
+"101","Maryland","professional",39.9916666666667
+"102","Maryland","service",18.1208333333333
+"103","Maryland","office",22.5708333333333
+"104","Maryland","construction",9.77083333333333
+"105","Maryland","production",9.56666666666667
+"106","Massachusetts","professional",41.8357142857143
+"107","Massachusetts","service",18.4214285714286
+"108","Massachusetts","office",22.1
+"109","Massachusetts","construction",8.59285714285714
+"110","Massachusetts","production",9.05
+"111","Michigan","professional",29.6807228915663
+"112","Michigan","service",19.6168674698795
+"113","Michigan","office",22.4289156626506
+"114","Michigan","construction",10.7132530120482
+"115","Michigan","production",17.5626506024096
+"116","Minnesota","professional",33.3091954022988
+"117","Minnesota","service",17.2540229885057
+"118","Minnesota","office",21.0896551724138
+"119","Minnesota","construction",11.7229885057471
+"120","Minnesota","production",16.616091954023
+"121","Mississippi","professional",28.5439024390244
+"122","Mississippi","service",17.9719512195122
+"123","Mississippi","office",21.4841463414634
+"124","Mississippi","construction",12.2878048780488
+"125","Mississippi","production",19.7085365853659
+"126","Missouri","professional",29.2878260869565
+"127","Missouri","service",18.395652173913
+"128","Missouri","office",21.7991304347826
+"129","Missouri","construction",12.4034782608696
+"130","Missouri","production",18.1191304347826
+"131","Montana","professional",36.6160714285714
+"132","Montana","service",17.7107142857143
+"133","Montana","office",19.8625
+"134","Montana","construction",16.1803571428571
+"135","Montana","production",9.64107142857143
+"136","Nebraska","professional",35.0096774193548
+"137","Nebraska","service",15.6827956989247
+"138","Nebraska","office",20.4215053763441
+"139","Nebraska","construction",14.2989247311828
+"140","Nebraska","production",14.5935483870968
+"141","Nevada","professional",29.3823529411765
+"142","Nevada","service",20.2764705882353
+"143","Nevada","office",20.9411764705882
+"144","Nevada","construction",17.6411764705882
+"145","Nevada","production",11.7352941176471
+"146","New Hampshire","professional",37.83
+"147","New Hampshire","service",17.58
+"148","New Hampshire","office",23.13
+"149","New Hampshire","construction",9.64
+"150","New Hampshire","production",11.79
+"151","New Jersey","professional",40.2142857142857
+"152","New Jersey","service",17.2047619047619
+"153","New Jersey","office",24.0333333333333
+"154","New Jersey","construction",7.89047619047619
+"155","New Jersey","production",10.6285714285714
+"156","New Mexico","professional",32.969696969697
+"157","New Mexico","service",22.2181818181818
+"158","New Mexico","office",22.0939393939394
+"159","New Mexico","construction",13.0545454545455
+"160","New Mexico","production",9.66060606060606
+"161","New York","professional",35.7838709677419
+"162","New York","service",19.6129032258065
+"163","New York","office",22.7322580645161
+"164","New York","construction",9.80483870967742
+"165","New York","production",12.0661290322581
+"166","North Carolina","professional",30.847
+"167","North Carolina","service",19.304
+"168","North Carolina","office",22.037
+"169","North Carolina","construction",11.708
+"170","North Carolina","production",16.105
+"171","North Dakota","professional",36.5339622641509
+"172","North Dakota","service",16.2660377358491
+"173","North Dakota","office",19.1792452830189
+"174","North Dakota","construction",15.2698113207547
+"175","North Dakota","production",12.7490566037736
+"176","Ohio","professional",30.5806818181818
+"177","Ohio","service",17.2136363636364
+"178","Ohio","office",21.75
+"179","Ohio","construction",9.96363636363636
+"180","Ohio","production",20.4965909090909
+"181","Oklahoma","professional",30.461038961039
+"182","Oklahoma","service",17.6805194805195
+"183","Oklahoma","office",21.8584415584416
+"184","Oklahoma","construction",14.2
+"185","Oklahoma","production",15.8012987012987
+"186","Oregon","professional",32.875
+"187","Oregon","service",19.3
+"188","Oregon","office",21.6916666666667
+"189","Oregon","construction",12.6694444444444
+"190","Oregon","production",13.4611111111111
+"191","Pennsylvania","professional",31.9014925373134
+"192","Pennsylvania","service",18.065671641791
+"193","Pennsylvania","office",22.2298507462687
+"194","Pennsylvania","construction",10.5970149253731
+"195","Pennsylvania","production",17.189552238806
+"196","Puerto Rico","professional",29.1602564102564
+"197","Puerto Rico","service",21.8884615384615
+"198","Puerto Rico","office",25.9333333333333
+"199","Puerto Rico","construction",10.8179487179487
+"200","Puerto Rico","production",12.1923076923077
+"201","Rhode Island","professional",41.88
+"202","Rhode Island","service",18.88
+"203","Rhode Island","office",22.72
+"204","Rhode Island","construction",7.26
+"205","Rhode Island","production",9.28
+"206","South Carolina","professional",28.7434782608696
+"207","South Carolina","service",18.6369565217391
+"208","South Carolina","office",23.2108695652174
+"209","South Carolina","construction",10.6217391304348
+"210","South Carolina","production",18.7760869565217
+"211","South Dakota","professional",36.9378787878788
+"212","South Dakota","service",16.769696969697
+"213","South Dakota","office",20.1621212121212
+"214","South Dakota","construction",13.6954545454545
+"215","South Dakota","production",12.4363636363636
+"216","Tennessee","professional",28.3757894736842
+"217","Tennessee","service",17.4494736842105
+"218","Tennessee","office",22.3694736842105
+"219","Tennessee","construction",11.5357894736842
+"220","Tennessee","production",20.2778947368421
+"221","Texas","professional",29.3956692913386
+"222","Texas","service",18.3826771653543
+"223","Texas","office",21.7082677165354
+"224","Texas","construction",15.8653543307087
+"225","Texas","production",14.6535433070866
+"226","Utah","professional",32.3068965517241
+"227","Utah","service",19.1586206896552
+"228","Utah","office",22.2896551724138
+"229","Utah","construction",13.3379310344828
+"230","Utah","production",12.9103448275862
+"231","Vermont","professional",37.75
+"232","Vermont","service",18.1714285714286
+"233","Vermont","office",21.0785714285714
+"234","Vermont","construction",11.3571428571429
+"235","Vermont","production",11.6357142857143
+"236","Virginia","professional",34.3541353383459
+"237","Virginia","service",18.5375939849624
+"238","Virginia","office",22.9233082706767
+"239","Virginia","construction",10.7714285714286
+"240","Virginia","production",13.4165413533835
+"241","Washington","professional",33.3153846153846
+"242","Washington","service",18.6435897435897
+"243","Washington","office",21.3564102564103
+"244","Washington","construction",13.9205128205128
+"245","Washington","production",12.7512820512821
+"246","West Virginia","professional",29.1909090909091
+"247","West Virginia","service",19.7563636363636
+"248","West Virginia","office",22.0381818181818
+"249","West Virginia","construction",14.0418181818182
+"250","West Virginia","production",14.98
+"251","Wisconsin","professional",30.8847222222222
+"252","Wisconsin","service",17.3527777777778
+"253","Wisconsin","office",21.6222222222222
+"254","Wisconsin","construction",11.1625
+"255","Wisconsin","production",18.9736111111111
+"256","Wyoming","professional",33.2347826086957
+"257","Wyoming","service",18.0304347826087
+"258","Wyoming","office",19.2913043478261
+"259","Wyoming","construction",16.1434782608696
+"260","Wyoming","production",13.304347826087
