@@ -1,8 +1,25 @@
+# library(shinydashboard)
+# library(tidyverse)
+# library(usmap)
+# library(ggplot2)
+# library(ggmap)
+# library(ggrepel)
+# library(GGally)
+# library(plotly)
+# library(shiny)
+# library(scales)
+# library(shinyWidgets)
+# library(shinythemes)
+# library(shinyjs)
+# library(janitor)
+# library(DT)
+
 source('~/UMass/CS590V/final_shiny/utils.R', echo = TRUE)
+
 
 packages(c("shinydashboard", "tidyverse", "usmap", "ggplot2", "ggmap", "ggrepel", 
            "GGally", "plotly", "shiny", "scales", "shinyWidgets", "shinythemes",
-           "janitor", "DT","leaflet","sp","rgdal", "sf", "htmltools"))
+           "shinyjs", "janitor", "DT","leaflet","sp","rgdal", "sf", "htmltools"))
 
 # Load data
 school <- read_csv('data/school.csv')
