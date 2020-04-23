@@ -1,0 +1,101 @@
+"","state_name","institutional_control","count"
+"1","Alabama","private",0
+"2","Alabama","public",4
+"3","Alaska","private",0
+"4","Alaska","public",1
+"5","Arizona","private",0
+"6","Arizona","public",2
+"7","Arkansas","private",0
+"8","Arkansas","public",1
+"9","California","private",10
+"10","California","public",12
+"11","Colorado","private",1
+"12","Colorado","public",4
+"13","Connecticut","private",2
+"14","Connecticut","public",1
+"15","Delaware","private",0
+"16","Delaware","public",1
+"17","Florida","private",3
+"18","Florida","public",6
+"19","Georgia","private",2
+"20","Georgia","public",3
+"21","Hawaii","private",0
+"22","Hawaii","public",1
+"23","Idaho","private",0
+"24","Idaho","public",1
+"25","Illinois","private",6
+"26","Illinois","public",4
+"27","Indiana","private",1
+"28","Indiana","public",4
+"29","Iowa","private",0
+"30","Iowa","public",2
+"31","Kansas","private",0
+"32","Kansas","public",2
+"33","Kentucky","private",0
+"34","Kentucky","public",2
+"35","Louisiana","private",1
+"36","Louisiana","public",2
+"37","Maine","private",0
+"38","Maine","public",1
+"39","Maryland","private",1
+"40","Maryland","public",2
+"41","Massachusetts","private",11
+"42","Massachusetts","public",4
+"43","Michigan","private",1
+"44","Michigan","public",6
+"45","Minnesota","private",1
+"46","Minnesota","public",1
+"47","Mississippi","private",0
+"48","Mississippi","public",2
+"49","Missouri","private",3
+"50","Missouri","public",3
+"51","Montana","private",0
+"52","Montana","public",2
+"53","Nebraska","private",0
+"54","Nebraska","public",1
+"55","Nevada","private",0
+"56","Nevada","public",1
+"57","New Hampshire","private",1
+"58","New Hampshire","public",1
+"59","New Jersey","private",3
+"60","New Jersey","public",5
+"61","New Mexico","private",0
+"62","New Mexico","public",2
+"63","New York","private",16
+"64","New York","public",5
+"65","North Carolina","private",3
+"66","North Carolina","public",4
+"67","North Dakota","private",0
+"68","North Dakota","public",2
+"69","Ohio","private",3
+"70","Ohio","public",6
+"71","Oklahoma","private",1
+"72","Oklahoma","public",2
+"73","Oregon","private",0
+"74","Oregon","public",2
+"75","Pennsylvania","private",9
+"76","Pennsylvania","public",3
+"77","Rhode Island","private",1
+"78","Rhode Island","public",1
+"79","South Carolina","private",0
+"80","South Carolina","public",2
+"81","South Dakota","private",0
+"82","South Dakota","public",2
+"83","Tennessee","private",3
+"84","Tennessee","public",1
+"85","Texas","private",5
+"86","Texas","public",5
+"87","Utah","private",1
+"88","Utah","public",2
+"89","Vermont","private",0
+"90","Vermont","public",1
+"91","Virginia","private",1
+"92","Virginia","public",5
+"93","Washington","private",1
+"94","Washington","public",2
+"95","West Virginia","private",0
+"96","West Virginia","public",1
+"97","Wisconsin","private",2
+"98","Wisconsin","public",1
+"99","Wyoming","private",0
+"100","Wyoming","public",1

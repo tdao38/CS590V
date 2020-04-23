@@ -19,29 +19,40 @@ source('utils.R', echo = TRUE)
 
 packages(c("shinydashboard", "tidyverse", "usmap", "ggplot2", "ggmap", "ggrepel", 
            "GGally", "plotly", "shiny", "scales", "shinyWidgets", "shinythemes",
-           "shinyjs", "janitor", "DT","leaflet","sp","rgdal", "sf", "htmltools"))
+           "shinyjs", "janitor", "DT","leaflet","sp","rgdal", "sf", "htmltools",
+           "RColorBrewer"))
 
 # Load data
-school <- read_csv('data/school.csv')
-census <- read_csv('data/census17.csv')
-school_loc <- read.csv("data/hd2018.csv") %>% 
-  select(INSTNM, LONGITUD, LATITUDE) %>% 
-  rename(display_name = INSTNM,
-         long = LONGITUD,
-         lat = LATITUDE)
-
-# Clean
-school <- school %>% clean_names()
-school$state_name <- state.name[match(school$state, state.abb)]
-school <- school %>% filter(overall_rank >= 1)
-
-school_loc$display_name <- gsub("-", " ", school_loc$display_name)
-school$display_name <- gsub("--", " ", school$display_name)
-
-school <- merge(x = school, y = school_loc, by = "display_name", all.x = TRUE)
-school$state_name <- as.factor(school$state_name)
+#school <- read_csv('data/school_raw.csv')
+school <- read_csv('data/school_new.csv')
+census <- read_csv('data/census_new.csv')
+income <- read_csv('data/income.csv')
+race <- read_csv('data/race.csv')
+job_type <- read_csv('data/job_type.csv')
+school_type <- read_csv('data/school_type.csv')
 states <- readOGR(dsn = "data/cb_2016_us_state_500k.shp", encoding = "UTF-8", verbose = FALSE)
+# school_loc <- read.csv("data/hd2018.csv") %>% 
+#   select(INSTNM, LONGITUD, LATITUDE) %>% 
+#   rename(display_name = INSTNM,
+#          long = LONGITUD,
+#          lat = LATITUDE)
+# 
+# CLEANING ===========================================================
+# school <- school %>% clean_names()
+# school$state_name <- state.name[match(school$state, state.abb)]
+# school <- school %>% filter(overall_rank >= 1)
+# 
+# school_loc$display_name <- gsub("-", " ", school_loc$display_name)
+# school$display_name <- gsub("--", " ", school$display_name)
+# 
+# school <- merge(x = school, y = school_loc, by = "display_name", all.x = TRUE)
+# school$state_name <- as.factor(school$state_name)
+# write.csv(school, file = 'school_new.csv')
 
+# census <- census %>% clean_names()
+# census <- census %>% mutate(state_name = state)
+# census$state <- state.abb[match(census$state_name, state.name)]
+#write.csv(census, file = 'census_new.csv')
 
 # school_aid <- school %>% select(display_name, state, state_name, overall_rank, acceptance_rate, percent_receiving_aid, cost_after_aid)
 # school_aid_complete <- school_aid[complete.cases(school_aid),]
@@ -54,51 +65,112 @@ states <- readOGR(dsn = "data/cb_2016_us_state_500k.shp", encoding = "UTF-8", ve
 # write.csv(school_score, file = 'school_score.csv')
 
 # Income process
-income_df <- income <- census %>% 
-    group_by(State) %>%
-    summarize(AvgIncome = mean(Income),
-              AvgUnemployment = mean(Unemployment),
-              Pop = sum(TotalPop)) %>%
-    rename(state = 'State')
-income_df$state <- tolower(income_df$state)
-income_df$AvgIncome <- round(income_df$AvgIncome)
-income_df$AvgUnemployment <- round(income_df$AvgUnemployment)
+# income_df <- census %>%
+#     group_by(state_name, state) %>%
+#     summarize(avg_income = mean(income),
+#               avg_unemployment = mean(unemployment),
+#               pop = sum(total_pop))
+# income_df$avg_income <- round(income_df$avg_income)
+# income_df$avg_unemployment <- round(income_df$avg_unemployment)
 
-# Race
-race <- census %>%
-    group_by(State) %>%
-    summarize(Hispanic = mean(Hispanic),
-              White = mean(White),
-              Black = mean(Black),
-              Native = mean(Native),
-              Asian = mean(Asian),
-              Pacific = mean(Pacific)) %>%
-    gather(key = 'race', value = 'pct', c(Hispanic, White, Black, Native, Asian, Pacific))
-race$pct <- round(race$pct)
+#write.csv(income_df, file = 'income.csv')
 
-race <- race %>%
-    group_by(State) %>%
-    mutate(fraction = pct/100)
+# prof
+# job_type <- census %>%
+#   group_by(state_name) %>%
+#   summarize(professional = mean(professional),
+#             service = mean(service),
+#             office = mean(office),
+#             construction = mean(construction),
+#             production = mean(production)) %>%
+#   gather(key = 'job_type', value = 'pct', c(professional, service, office, construction, production)) %>%
+#   arrange(state_name)
+# write.csv(job_type, file = 'job_type.csv')
 
-# Gender
-gender <- census %>%
-    group_by(State) %>%
-    summarize(Male = mean(Men),
-              Female = mean(Women),
-              male = Male/(Male+Female),
-              female = Female/(Male+Female)) %>%
-    select(State, male, female) %>%
-    gather(key = 'gender', value = 'fraction', c(male, female))
-
-gender$fraction <- round(gender$fraction,2)
-
-# Aid
-aid <- school %>%
-    select(state_name, display_name, acceptance_rate, percent_receiving_aid, cost_after_aid)
-
-for (i in seq(3,5)){
-    aid[,i] <- as.integer(aid[[i]])
-}
+#
+# job_plot <- job_type %>%
+#   filter(state_name == 'Alabama') %>%
+#   plot_ly(labels = ~job_type,
+#           values = ~pct,
+#           hovertemplate = "%{label}: %{percent}",
+#           name = '',
+#           marker = list(colors = brewer.pal(5, 'Set2'))) %>%
+#   add_pie(hole = 0.6) %>%
+#   hide_legend()
+#   # layout(legend = list(x = 0.25,
+#   #                      y = 0.25))
+#
+# # Race
+# race <- census %>%
+#     group_by(state_name) %>%
+#     summarize(hispanic = mean(hispanic),
+#               white = mean(white),
+#               black = mean(black),
+#               native = mean(native),
+#               asian = mean(asian),
+#               pacific = mean(pacific)) %>%
+#     gather(key = 'race', value = 'pct', c(hispanic, white, black, native, asian, pacific))
+# race$pct <- round(race$pct)
+# write.csv(race, file = 'race.csv')
+# race_plot <- race %>%
+#   filter(state_name == 'California') %>%
+#   plot_ly(labels = ~race,
+#           values = ~pct,
+#           hovertemplate = "%{label}: %{percent}",
+#           name = '',
+#           marker = list(colors = brewer.pal(5, 'Set2'))) %>%
+#   add_pie(hole = 0.6) %>%
+#   hide_legend()
+#
+# race <- race %>%
+#     group_by(State) %>%
+#     mutate(fraction = pct/100)
+#
+# # stack
+# school_type <- school %>%
+#   select(state_name, display_name, institutional_control) %>%
+#   group_by(state_name, institutional_control) %>%
+#   summarize(count = n()) %>%
+#   spread(institutional_control, count) %>%
+#   replace_na(list(private = 0, public = 0)) %>%
+#   gather(institutional_control, count, -state_name) %>%
+#   arrange(state_name)
+#school_type <- school_type[which(complete.cases(school_type)),]
+#write.csv(school_type, file = 'school_type.csv')
+#
+# school_type_plot <- school_type %>%
+#   filter(state_name %in% c('California', 'Massachusetts', 'New York')) %>%
+#   group_by(state_name) %>%
+#   mutate(countT = sum(count)) %>%
+#   group_by(institutional_control, add = TRUE) %>%
+#   mutate(pct=round(100*count/countT)) %>%
+#   ggplot(aes(x = state_name, y = pct, fill = institutional_control)) +
+#   geom_col(position = 'stack', width = 0.4) +
+#   scale_fill_brewer(palette = 'Pastel1') +
+#   #scale_fill_manual(values = c('cornflowerblue', 'salmon')) +
+#   theme_bw()
+# 
+# ggplotly(school_type_plot)
+# 
+# # Gender
+# gender <- census %>%
+#     group_by(State) %>%
+#     summarize(Male = mean(Men),
+#               Female = mean(Women),
+#               male = Male/(Male+Female),
+#               female = Female/(Male+Female)) %>%
+#     select(State, male, female) %>%
+#     gather(key = 'gender', value = 'fraction', c(male, female))
+# 
+# gender$fraction <- round(gender$fraction,2)
+# 
+# # Aid
+# aid <- school %>%
+#     select(state_name, display_name, acceptance_rate, percent_receiving_aid, cost_after_aid)
+# 
+# for (i in seq(3,5)){
+#     aid[,i] <- as.integer(aid[[i]])
+# }
 
 # Define UI for application that draws a histogram
 # ui <- dashboardPage(

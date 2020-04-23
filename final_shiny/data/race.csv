@@ -1,0 +1,313 @@
+"","state_name","race","pct"
+"1","Alabama","hispanic",3
+"2","Alaska","hispanic",5
+"3","Arizona","hispanic",31
+"4","Arkansas","hispanic",5
+"5","California","hispanic",30
+"6","Colorado","hispanic",20
+"7","Connecticut","hispanic",11
+"8","Delaware","hispanic",9
+"9","District of Columbia","hispanic",11
+"10","Florida","hispanic",14
+"11","Georgia","hispanic",6
+"12","Hawaii","hispanic",10
+"13","Idaho","hispanic",13
+"14","Illinois","hispanic",5
+"15","Indiana","hispanic",4
+"16","Iowa","hispanic",5
+"17","Kansas","hispanic",10
+"18","Kentucky","hispanic",2
+"19","Louisiana","hispanic",3
+"20","Maine","hispanic",1
+"21","Maryland","hispanic",6
+"22","Massachusetts","hispanic",9
+"23","Michigan","hispanic",3
+"24","Minnesota","hispanic",4
+"25","Mississippi","hispanic",2
+"26","Missouri","hispanic",3
+"27","Montana","hispanic",3
+"28","Nebraska","hispanic",7
+"29","Nevada","hispanic",17
+"30","New Hampshire","hispanic",2
+"31","New Jersey","hispanic",17
+"32","New Mexico","hispanic",47
+"33","New York","hispanic",8
+"34","North Carolina","hispanic",7
+"35","North Dakota","hispanic",3
+"36","Ohio","hispanic",3
+"37","Oklahoma","hispanic",9
+"38","Oregon","hispanic",12
+"39","Pennsylvania","hispanic",4
+"40","Puerto Rico","hispanic",99
+"41","Rhode Island","hispanic",7
+"42","South Carolina","hispanic",4
+"43","South Dakota","hispanic",3
+"44","Tennessee","hispanic",3
+"45","Texas","hispanic",35
+"46","Utah","hispanic",9
+"47","Vermont","hispanic",2
+"48","Virginia","hispanic",5
+"49","Washington","hispanic",14
+"50","West Virginia","hispanic",1
+"51","Wisconsin","hispanic",4
+"52","Wyoming","hispanic",8
+"53","Alabama","white",65
+"54","Alaska","white",48
+"55","Arizona","white",51
+"56","Arkansas","white",76
+"57","California","white",55
+"58","Colorado","white",75
+"59","Connecticut","white",76
+"60","Delaware","white",65
+"61","District of Columbia","white",36
+"62","Florida","white",68
+"63","Georgia","white",63
+"64","Hawaii","white",26
+"65","Idaho","white",83
+"66","Illinois","white",87
+"67","Indiana","white",91
+"68","Iowa","white",91
+"69","Kansas","white",85
+"70","Kentucky","white",92
+"71","Louisiana","white",62
+"72","Maine","white",94
+"73","Maryland","white",68
+"74","Massachusetts","white",78
+"75","Michigan","white",88
+"76","Minnesota","white",89
+"77","Mississippi","white",54
+"78","Missouri","white",91
+"79","Montana","white",87
+"80","Nebraska","white",90
+"81","Nevada","white",72
+"82","New Hampshire","white",93
+"83","New Jersey","white",62
+"84","New Mexico","white",42
+"85","New York","white",81
+"86","North Carolina","white",68
+"87","North Dakota","white",88
+"88","Ohio","white",90
+"89","Oklahoma","white",71
+"90","Oregon","white",81
+"91","Pennsylvania","white",88
+"92","Puerto Rico","white",1
+"93","Rhode Island","white",84
+"94","South Carolina","white",57
+"95","South Dakota","white",80
+"96","Tennessee","white",86
+"97","Texas","white",57
+"98","Utah","white",85
+"99","Vermont","white",94
+"100","Virginia","white",72
+"101","Washington","white",76
+"102","West Virginia","white",94
+"103","Wisconsin","white",89
+"104","Wyoming","white",87
+"105","Alabama","black",29
+"106","Alaska","black",1
+"107","Arizona","black",2
+"108","Arkansas","black",16
+"109","California","black",3
+"110","Colorado","black",1
+"111","Connecticut","black",6
+"112","Delaware","black",20
+"113","District of Columbia","black",47
+"114","Florida","black",14
+"115","Georgia","black",28
+"116","Hawaii","black",1
+"117","Idaho","black",0
+"118","Illinois","black",5
+"119","Indiana","black",3
+"120","Iowa","black",1
+"121","Kansas","black",2
+"122","Kentucky","black",4
+"123","Louisiana","black",32
+"124","Maine","black",1
+"125","Maryland","black",20
+"126","Massachusetts","black",6
+"127","Michigan","black",4
+"128","Minnesota","black",2
+"129","Mississippi","black",41
+"130","Missouri","black",4
+"131","Montana","black",0
+"132","Nebraska","black",1
+"133","Nevada","black",2
+"134","New Hampshire","black",1
+"135","New Jersey","black",11
+"136","New Mexico","black",1
+"137","New York","black",6
+"138","North Carolina","black",20
+"139","North Dakota","black",1
+"140","Ohio","black",4
+"141","Oklahoma","black",3
+"142","Oregon","black",1
+"143","Pennsylvania","black",5
+"144","Puerto Rico","black",0
+"145","Rhode Island","black",3
+"146","South Carolina","black",35
+"147","South Dakota","black",1
+"148","Tennessee","black",7
+"149","Texas","black",6
+"150","Utah","black",0
+"151","Vermont","black",1
+"152","Virginia","black",18
+"153","Washington","black",1
+"154","West Virginia","black",2
+"155","Wisconsin","black",2
+"156","Wyoming","black",1
+"157","Alabama","native",1
+"158","Alaska","native",32
+"159","Arizona","native",13
+"160","Arkansas","native",1
+"161","California","native",2
+"162","Colorado","native",1
+"163","Connecticut","native",0
+"164","Delaware","native",0
+"165","District of Columbia","native",0
+"166","Florida","native",0
+"167","Georgia","native",0
+"168","Hawaii","native",0
+"169","Idaho","native",2
+"170","Illinois","native",0
+"171","Indiana","native",0
+"172","Iowa","native",0
+"173","Kansas","native",1
+"174","Kentucky","native",0
+"175","Louisiana","native",1
+"176","Maine","native",1
+"177","Maryland","native",0
+"178","Massachusetts","native",0
+"179","Michigan","native",1
+"180","Minnesota","native",2
+"181","Mississippi","native",1
+"182","Missouri","native",0
+"183","Montana","native",8
+"184","Nebraska","native",1
+"185","Nevada","native",4
+"186","New Hampshire","native",0
+"187","New Jersey","native",0
+"188","New Mexico","native",7
+"189","New York","native",0
+"190","North Carolina","native",2
+"191","North Dakota","native",7
+"192","Ohio","native",0
+"193","Oklahoma","native",9
+"194","Oregon","native",2
+"195","Pennsylvania","native",0
+"196","Puerto Rico","native",0
+"197","Rhode Island","native",0
+"198","South Carolina","native",0
+"199","South Dakota","native",14
+"200","Tennessee","native",0
+"201","Texas","native",0
+"202","Utah","native",3
+"203","Vermont","native",0
+"204","Virginia","native",0
+"205","Washington","native",2
+"206","West Virginia","native",0
+"207","Wisconsin","native",3
+"208","Wyoming","native",2
+"209","Alabama","asian",1
+"210","Alaska","asian",6
+"211","Arizona","asian",1
+"212","Arkansas","asian",1
+"213","California","asian",7
+"214","Colorado","asian",1
+"215","Connecticut","asian",4
+"216","Delaware","asian",3
+"217","District of Columbia","asian",4
+"218","Florida","asian",2
+"219","Georgia","asian",1
+"220","Hawaii","asian",31
+"221","Idaho","asian",1
+"222","Illinois","asian",1
+"223","Indiana","asian",1
+"224","Iowa","asian",1
+"225","Kansas","asian",1
+"226","Kentucky","asian",1
+"227","Louisiana","asian",1
+"228","Maine","asian",1
+"229","Maryland","asian",3
+"230","Massachusetts","asian",4
+"231","Michigan","asian",1
+"232","Minnesota","asian",1
+"233","Mississippi","asian",1
+"234","Missouri","asian",1
+"235","Montana","asian",0
+"236","Nebraska","asian",1
+"237","Nevada","asian",2
+"238","New Hampshire","asian",2
+"239","New Jersey","asian",7
+"240","New Mexico","asian",1
+"241","New York","asian",3
+"242","North Carolina","asian",1
+"243","North Dakota","asian",0
+"244","Ohio","asian",1
+"245","Oklahoma","asian",1
+"246","Oregon","asian",2
+"247","Pennsylvania","asian",1
+"248","Puerto Rico","asian",0
+"249","Rhode Island","asian",2
+"250","South Carolina","asian",1
+"251","South Dakota","asian",1
+"252","Tennessee","asian",1
+"253","Texas","asian",1
+"254","Utah","asian",1
+"255","Vermont","asian",1
+"256","Virginia","asian",2
+"257","Washington","asian",3
+"258","West Virginia","asian",0
+"259","Wisconsin","asian",1
+"260","Wyoming","asian",1
+"261","Alabama","pacific",0
+"262","Alaska","pacific",1
+"263","Arizona","pacific",0
+"264","Arkansas","pacific",0
+"265","California","pacific",0
+"266","Colorado","pacific",0
+"267","Connecticut","pacific",0
+"268","Delaware","pacific",0
+"269","District of Columbia","pacific",0
+"270","Florida","pacific",0
+"271","Georgia","pacific",0
+"272","Hawaii","pacific",14
+"273","Idaho","pacific",0
+"274","Illinois","pacific",0
+"275","Indiana","pacific",0
+"276","Iowa","pacific",0
+"277","Kansas","pacific",0
+"278","Kentucky","pacific",0
+"279","Louisiana","pacific",0
+"280","Maine","pacific",0
+"281","Maryland","pacific",0
+"282","Massachusetts","pacific",0
+"283","Michigan","pacific",0
+"284","Minnesota","pacific",0
+"285","Mississippi","pacific",0
+"286","Missouri","pacific",0
+"287","Montana","pacific",0
+"288","Nebraska","pacific",0
+"289","Nevada","pacific",0
+"290","New Hampshire","pacific",0
+"291","New Jersey","pacific",0
+"292","New Mexico","pacific",0
+"293","New York","pacific",0
+"294","North Carolina","pacific",0
+"295","North Dakota","pacific",0
+"296","Ohio","pacific",0
+"297","Oklahoma","pacific",0
+"298","Oregon","pacific",0
+"299","Pennsylvania","pacific",0
+"300","Puerto Rico","pacific",0
+"301","Rhode Island","pacific",0
+"302","South Carolina","pacific",0
+"303","South Dakota","pacific",0
+"304","Tennessee","pacific",0
+"305","Texas","pacific",0
+"306","Utah","pacific",0
+"307","Vermont","pacific",0
+"308","Virginia","pacific",0
+"309","Washington","pacific",0
+"310","West Virginia","pacific",0
+"311","Wisconsin","pacific",0
+"312","Wyoming","pacific",0
