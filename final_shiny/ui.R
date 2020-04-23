@@ -77,11 +77,16 @@
 #   )
 # )
 ui <- dashboardPage(
-  skin = 'red',
+  #skin = 'red',
   # Application title
   dashboardHeader(
     title = "US Higher Education",
-    titleWidth =300
+    titleWidth = 300,
+    tags$li(a(href = "https://www.cics.umass.edu//",
+              img(src = 'mm.png',
+                  title = "CICS", height = "38px"),
+              style = "padding-top:6px; padding-bottom:1px;"),
+            class = "dropdown")
   ),
   dashboardSidebar(
     width = 300,
@@ -140,6 +145,20 @@ ui <- dashboardPage(
     )
   ),
   dashboardBody(
+    tags$head(tags$style(HTML('
+                            .skin-blue .main-header .logo {
+                              background-color: #881c1c;
+                              }
+                              .skin-blue .main-header .logo:hover {
+                              background-color: #881c1c;
+                              }
+                              .skin-blue .main-header .navbar {
+                              background-color: #881c1c;
+                              } 
+                              .skin-blue .main-header .navbar .sidebar-toggle:hover{
+                              background-color: #ffcccb;
+                              }
+                              '))),
     fluidRow(
       column(
         width = 7,
@@ -177,7 +196,40 @@ ui <- dashboardPage(
           )
         )
       )
+    ),
+    fluidRow(
+      column(
+        width = 7,
+        tags$h3('Additional Information about Living and Working'),
+        tags$div(
+          class = 'panel panel-danger',
+          tags$div(
+            class = 'panel-body',
+            leafletOutput(outputId = 'map')
+          )
+        )
+      ),
+      column(
+        width = 5,
+        tags$h3('State Information'),
+        tags$div(
+          class = 'panel panel-danger',
+          tags$div(
+            class = 'panel-body',
+            valueBoxOutput('popBox',width = 6),
+            valueBoxOutput('USPop',width = 6),
+            valueBoxOutput('incomeBox', width = 6),
+            valueBoxOutput('USincome', width = 6),
+            valueBoxOutput('unempBox', width = 6),
+            valueBoxOutput('USunem', width = 6)
+          )
+        )
+      )
     )
+    
+    
+    
+    
     # tabItems(
     #   tabItem(tabName = "overview",
     #           fluidRow(
