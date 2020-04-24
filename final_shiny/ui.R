@@ -103,7 +103,7 @@ ui <- dashboardPage(
           class = 'panel panel-danger',
           tags$div(
             class = 'panel-body',
-            dataTableOutput('schools_tb_output')
+            dataTableOutput('schools_tb_output') %>% withSpinner(color = '#881c1c', type = 6)
           )
         )
       ),
@@ -117,7 +117,7 @@ ui <- dashboardPage(
             class = 'panel-body',
             #h4('Aid scatterplot'),
             tags$br(),
-            plotlyOutput('school_type_plot', height = '450px'),
+            plotlyOutput('school_type_plot', height = '450px') %>% withSpinner(color = '#881c1c', type = 6),
             tags$br()
           )
         )
@@ -157,7 +157,7 @@ ui <- dashboardPage(
               animation = 'smooth',
               bigger = TRUE
             ),
-            plotlyOutput('aidScatterPlot'),
+            plotlyOutput('aidScatterPlot') %>% withSpinner(color = '#881c1c', type = 6),
             tags$br()
           )
         )
@@ -195,11 +195,11 @@ ui <- dashboardPage(
             fluidRow(
               column(
                 width = 6,
-                plotlyOutput('race_plot', width = "245px", height="245px")
+                plotlyOutput('race_plot', width = "245px", height="245px") %>% withSpinner(color = '#881c1c', type = 6)
               ),
               column(
                 width = 6,
-                plotlyOutput('job_type_plot', width = "245px", height="245px")
+                plotlyOutput('job_type_plot', width = "245px", height="245px") %>% withSpinner(color = '#881c1c', type = 6)
               )
             )
             # valueBoxOutput('popBox',width = 2),

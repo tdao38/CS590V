@@ -20,7 +20,7 @@ source('utils.R', echo = TRUE)
 packages(c("shinydashboard", "tidyverse", "usmap", "ggplot2", "ggmap", "ggrepel", 
            "GGally", "plotly", "shiny", "scales", "shinyWidgets", "shinythemes",
            "shinyjs", "janitor", "DT","leaflet","sp","rgdal", "sf", "htmltools",
-           "RColorBrewer"))
+           "RColorBrewer", "shinycssloaders"))
 
 # Load data
 #school <- read_csv('data/school_raw.csv')
