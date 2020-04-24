@@ -99,9 +99,9 @@ ui <- dashboardPage(
     )
   ),
   dashboardBody(
-    tags$style(".small-box.bg-red {background-color: #ffc3c3 !important; color: #323232 !important; }"),
-    tags$style(".small-box.bg-purple {background-color: #ddd3ee !important; color: #323232 !important; }"),
-    tags$style(".small-box.bg-blue {background-color: #B8E2F2 !important; color: #323232 !important; }"),
+    tags$style(".small-box.bg-red {background-color: #F2B349 !important; color: #ffffff !important; }"),
+    tags$style(".small-box.bg-purple {background-color: #42AD96 !important; color: #ffffff !important; }"),
+    tags$style(".small-box.bg-blue {background-color: #B5584E !important; color: #ffffff !important; }"),
     tags$head(tags$style(HTML('
                             .skin-blue .main-header .logo {
                               background-color: #881c1c;
@@ -134,6 +134,7 @@ ui <- dashboardPage(
         tags$div(
           class = 'panel panel-danger',
           tags$div(
+            tags$style(HTML('table.dataTable tr.selected td, table.dataTable td.selected {background-color: #f2cece !important;}')),
             class = 'panel-body',
             dataTableOutput('schools_tb_output') %>% withSpinner(color = '#881c1c', type = 6)
           )
