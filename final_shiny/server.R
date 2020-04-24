@@ -105,13 +105,15 @@ server <- function(input, output, session) {
           tags$br(),
           tags$b('Acceptance rate: '), paste0(subset_df$acceptance_rate, '%'),
           tags$br(),
-          tags$b('Tuition: '), paste0(format(subset_df$tuition, big.mark = ',', scientific = FALSE), '$'),
+          tags$b('Tuition: '), paste0('$', format(subset_df$tuition, big.mark = ',', scientific = FALSE)),
           tags$br(),
           tags$b('Percent Receiving Aid: '), paste0(subset_df$percent_receiving_aid, '%'),
           tags$br(),
-          tags$b('Cost after aid: '), paste0(format(subset_df$cost_after_aid, big.mark = ',', scientific = FALSE), '$')
+          tags$b('Cost after aid: '), paste0('$',format(subset_df$cost_after_aid, big.mark = ',', scientific = FALSE))
         ),
         width = '40%',
+        btn_colors = '#881c1c',
+        btn_labels = "Close",
         html = TRUE
       )
     }
@@ -132,8 +134,8 @@ server <- function(input, output, session) {
                               '<br>School type: ', institutional_control,
                               '<br>Percentage: ', pct, '%'))) +
       geom_col(position = 'stack', width = 0.4) +
-      scale_fill_brewer(palette = 'Pastel1') +
-      #scale_fill_manual(values = c('cornflowerblue', 'salmon')) +
+      #scale_fill_brewer(palette = 'Pastel1') +
+      scale_fill_manual(values = c('#B8E2F2', '#ffc3c3')) +
       theme_bw()
 
     ggplotly(school_type_plot) %>%
@@ -149,13 +151,14 @@ server <- function(input, output, session) {
       ggplot(aes(x = percent_receiving_aid,
                  y = acceptance_rate,
                  text = paste('School: ', display_name,
-                              '<br>Acceptance rate: ', acceptance_rate, '%',
-                              '<br>Percent receiving aid: ', percent_receiving_aid, '%',
-                              '<br>Tuition: ', format(tuition, big.mark = ',', scientific = FALSE), '$',
-                              '<br>Cost after aid: ', format(cost_after_aid, big.mark = ',', scientific = FALSE), '$'))) +
-      geom_point(aes(size = selectedData()[[selected_cost_type]], fill = institutional_control, alpha = 0.5)) +
+                              '<br>Acceptance rate: ', paste0(acceptance_rate, '%'),
+                              '<br>Percent receiving aid: ', paste0(percent_receiving_aid, '%'),
+                              '<br>Tuition: ', paste0('$', format(tuition, big.mark = ',', scientific = FALSE)),
+                              '<br>Cost after aid: ', paste0('$', format(cost_after_aid, big.mark = ',', scientific = FALSE))))) +
+      geom_point(aes(size = selectedData()[[selected_cost_type]], fill = institutional_control, alpha = 1.2)) +
       ylab('Acceptance Rate') +
       xlab('Percent Receiving Aid') +
+      scale_fill_manual(values = c('#ffc3c3','#B8E2F2'))+
       #scale_size_continuous(range = c(4, 7)) +
       # scale_y_continuous(expand=c(0,0)) +
       # coord_cartesian(clip = 'off') +
@@ -210,8 +213,11 @@ server <- function(input, output, session) {
       .$avg_income %>%
       scales::dollar() %>%
       valueBox(
-        subtitle = "Average Income",
-        color = "green",
+        #subtitle = "Average Income",
+        subtitle = renderUI({
+          HTML(paste("State Average Income", "$61,372 (U.S)", sep="<br/>"))
+        }),
+        color = "red",
         icon = icon("dollar-sign", class = "small_icon_test")
       )
   })
@@ -225,8 +231,11 @@ server <- function(input, output, session) {
       .$avg_unemployment %>%
       percent() %>%
       valueBox(
-        subtitle = "Average Unemployment",
-        color = "red",
+        #subtitle = "Unemployment 4.1% (U.S)",
+        subtitle = renderUI({
+          HTML(paste("State Unemployment", "4.1% (U.S)", sep="<br/>"))
+        }),
+        color = "blue",
         icon = icon("stats",lib='glyphicon', class = "small_icon_test")
       )
   })
@@ -238,7 +247,10 @@ server <- function(input, output, session) {
       .$pop %>%
       format(big.mark=",",scientific=FALSE) %>%
       valueBox(
-        subtitle = "Total Population",
+        #subtitle = "State Population",
+        subtitle = renderUI({
+          HTML(paste("State Population", "325,100,000 (U.S)", sep="<br/>"))
+        }),
         color = "purple",
         icon = icon("users", class = "small_icon_test")
       )
