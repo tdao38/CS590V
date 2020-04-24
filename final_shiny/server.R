@@ -263,7 +263,7 @@ server <- function(input, output, session) {
               values = ~pct,
               hovertemplate = "%{label}: %{percent}",
               name = '',
-              marker = list(colors = brewer.pal(5, 'Set2'))) %>%
+              marker = list(colors = c('#B5584E','#42AD96','#BABACA','#F2B349', '#808080', '#f2cece'))) %>%
       add_pie(hole = 0.6) %>%
       hide_legend() %>%
       layout(annotations = list (text = 'Race <br> breakdown',
@@ -282,7 +282,7 @@ server <- function(input, output, session) {
               hovertemplate = "%{label}: %{percent}",
               name = '',
               textposition = 'inside',
-              marker = list(colors = brewer.pal(5, 'Set2'))) %>%
+              marker = list(colors = c('#B5584E','#42AD96','#BABACA','#F2B349', '#808080'))) %>%
       add_pie(hole = 0.6) %>%
       hide_legend() %>%
       layout(annotations = list (text = 'Job type <br> breakdown',
