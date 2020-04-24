@@ -99,6 +99,9 @@ ui <- dashboardPage(
     )
   ),
   dashboardBody(
+    tags$style(".small-box.bg-red {background-color: #ffc3c3 !important; color: #323232 !important; }"),
+    tags$style(".small-box.bg-purple {background-color: #ddd3ee !important; color: #323232 !important; }"),
+    tags$style(".small-box.bg-blue {background-color: #B8E2F2 !important; color: #323232 !important; }"),
     tags$head(tags$style(HTML('
                             .skin-blue .main-header .logo {
                               background-color: #881c1c;
@@ -206,10 +209,10 @@ ui <- dashboardPage(
       ),
       column(
         width = 5,
-        tags$head(tags$style(HTML('.small-box {height: 65px; width: 155px;} 
-                                  .small-box h3 {font-size: 22px;}
-                                  .small-box p {font-size: 14px;}
-                                  .small_icon_test { font-size: 26px;}'))),
+        tags$head(tags$style(HTML('.small-box {height: 85px; width: 165px;} 
+                                  .small-box h3 {font-size: 23px;}
+                                  .small-box p {font-size: 15px;}
+                                  .small_icon_test { font-size: 35px;}'))),
         tags$h3('State Information'),
         tags$div(
           class = 'panel panel-danger',
@@ -218,8 +221,8 @@ ui <- dashboardPage(
             uiOutput('radioState'),
             fluidRow(
               valueBoxOutput('popBox', width = 4),
-              valueBoxOutput('incomeBox', width =4),
-              valueBoxOutput('unempBox', width =4)
+              valueBoxOutput('incomeBox', width = 4),
+              valueBoxOutput('unempBox', width = 4)
             ),
             fluidRow(
               column(
