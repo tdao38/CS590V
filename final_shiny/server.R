@@ -116,6 +116,31 @@ server <- function(input, output, session) {
     }
   })  
   
+  output$school_type_plot <- renderPlotly({
+    school_type_plot <- school_type %>%
+      filter(state_name %in% input$state_input) %>%
+      group_by(state_name) %>%
+      mutate(countT = sum(count)) %>%
+      group_by(institutional_control, add = TRUE) %>%
+      mutate(pct=round(100*count/countT)) %>%
+      ggplot(aes(x = state, 
+                 y = pct, 
+                 fill = institutional_control,
+                 width = 0.3,
+                 text = paste('State: ', state.name[match(state, state.abb)],
+                              '<br>School type: ', institutional_control,
+                              '<br>Percentage: ', pct, '%'))) +
+      geom_col(position = 'stack', width = 0.4) +
+      scale_fill_brewer(palette = 'Pastel1') +
+      #scale_fill_manual(values = c('cornflowerblue', 'salmon')) +
+      theme_bw()
+
+    ggplotly(school_type_plot) %>%
+      layout(legend = list(orientation = "h", 
+                           x = 0.30,  
+                           y = 10)) 
+  })
+  
   output$aidScatterPlot <- renderPlotly({
     #browser()
     selected_cost_type <- input$cost_type

@@ -109,6 +109,35 @@ ui <- dashboardPage(
       ),
       column(
         width = 5,
+        tags$h3('School type'),
+        tags$h6('Public and private school distribution in the chosen states'),
+        tags$div(
+          class = 'panel panel-danger',
+          tags$div(
+            class = 'panel-body',
+            #h4('Aid scatterplot'),
+            tags$br(),
+            plotlyOutput('school_type_plot', height = '450px'),
+            tags$br()
+          )
+        )
+      )
+    ),
+    fluidRow(
+      column(
+        width = 7,
+        tags$h3('Salary'),
+        tags$h6('Average mid career salary of these schools'),
+        tags$div(
+          class = 'panel panel-danger',
+          tags$div(
+            class = 'panel-body',
+            tags$h4('Place holder for salary plot')
+          )
+        )
+      ),
+      column(
+        width = 5,
         tags$h3('Financials'),
         tags$h6('Hover to a bubble to see more information'),
         tags$div(
@@ -166,14 +195,12 @@ ui <- dashboardPage(
             fluidRow(
               column(
                 width = 6,
-                plotlyOutput('race_plot', width = "255px", height="255px")
+                plotlyOutput('race_plot', width = "245px", height="245px")
               ),
               column(
                 width = 6,
-                plotlyOutput('job_type_plot', width = "255px", height="255px")
+                plotlyOutput('job_type_plot', width = "245px", height="245px")
               )
-              # plotlyOutput('race_plot'),
-              # plotlyOutput('job_type_plot')
             )
             # valueBoxOutput('popBox',width = 2),
             # valueBoxOutput('USPop',width = 2),
