@@ -128,14 +128,15 @@ server <- function(input, output, session) {
                  fill = institutional_control,
                  width = 0.3,
                  text = paste('State: ', state.name[match(state, state.abb)],
-                              '<br>School type: ', institutional_control,
-                              '<br>Percentage: ', pct, '%'))) +
+                              '<br>', pct, '% ', institutional_control, ' colleges'))) +
       geom_col(position = 'stack', width = 0.4) +
       scale_fill_brewer(palette = 'Pastel1') +
+      ylab('Percentage') +
+      xlab('State(s)') +
       #scale_fill_manual(values = c('cornflowerblue', 'salmon')) +
       theme_bw()
 
-    ggplotly(school_type_plot) %>%
+    ggplotly(school_type_plot, tooltip = 'text') %>%
       layout(legend = list(orientation = "h", 
                            x = 0.30,  
                            y = 10)) 
