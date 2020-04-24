@@ -88,17 +88,17 @@ states <- readOGR(dsn = "data/cb_2016_us_state_500k.shp", encoding = "UTF-8", ve
 # write.csv(job_type, file = 'job_type.csv')
 
 #
-# job_plot <- job_type %>%
-#   filter(state_name == 'Alabama') %>%
-#   plot_ly(labels = ~job_type,
-#           values = ~pct,
-#           hovertemplate = "%{label}: %{percent}",
-#           name = '',
-#           marker = list(colors = brewer.pal(5, 'Set2'))) %>%
-#   add_pie(hole = 0.6) %>%
-#   hide_legend()
-#   # layout(legend = list(x = 0.25,
-#   #                      y = 0.25))
+job_plot <- job_type %>%
+  filter(state_name == 'Alabama') %>%
+  plot_ly(labels = ~job_type,
+          values = ~pct,
+          hovertemplate = "%{label}: %{percent}",
+          name = '',
+          marker = list(colors = brewer.pal(5, 'Set2'))) %>%
+  add_pie(hole = 0.6) %>%
+  hide_legend()
+  # layout(legend = list(x = 0.25,
+  #                      y = 0.25))
 #
 # # Race
 # race <- census %>%

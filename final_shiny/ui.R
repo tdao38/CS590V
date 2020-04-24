@@ -148,17 +148,40 @@ ui <- dashboardPage(
       ),
       column(
         width = 5,
+        tags$head(tags$style(HTML('.small-box {height: 65px; width: 155px;} 
+                                  .small-box h3 {font-size: 22px;}
+                                  .small-box p {font-size: 14px;}
+                                  .small_icon_test { font-size: 26px;}'))),
         tags$h3('State Information'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
             class = 'panel-body',
-            valueBoxOutput('popBox',width = 6),
-            valueBoxOutput('USPop',width = 6),
-            valueBoxOutput('incomeBox', width = 6),
-            valueBoxOutput('USincome', width = 6),
-            valueBoxOutput('unempBox', width = 6),
-            valueBoxOutput('USunem', width = 6)
+            uiOutput('radioState'),
+            fluidRow(
+              valueBoxOutput('popBox', width = 4),
+              valueBoxOutput('incomeBox', width =4),
+              valueBoxOutput('unempBox', width =4)
+            ),
+            fluidRow(
+              column(
+                width = 6,
+                plotlyOutput('race_plot', width = "255px", height="255px")
+              ),
+              column(
+                width = 6,
+                plotlyOutput('job_type_plot', width = "255px", height="255px")
+              )
+              # plotlyOutput('race_plot'),
+              # plotlyOutput('job_type_plot')
+            )
+            # valueBoxOutput('popBox',width = 2),
+            # valueBoxOutput('USPop',width = 2),
+            # valueBoxOutput('incomeBox', width =2),
+            # valueBoxOutput('USincome', width = 6),
+            # valueBoxOutput('unempBox', width = 6),
+            # valueBoxOutput('USunem', width = 6)
+            #uiOutput("tabs")
           )
         )
       )
