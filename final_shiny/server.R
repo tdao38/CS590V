@@ -6,7 +6,7 @@ server <- function(input, output, session) {
     text = tags$span(
       icon('school', "fa-3x"),
       tags$hr(),
-      tags$h4('This visualization dashboard provides an overview about higher education in the United States.'), 
+      tags$h4('This dashboard provides an overview about higher education in the United States.'), 
       tags$h4('It can be an useful tool for people interested in exploring the overall academics scenario in the US,
               especially for high school students or international students, who are in the process of
               choosing potential colleges or estimating the scope of the college application competition.'),
@@ -15,12 +15,13 @@ server <- function(input, output, session) {
       tags$hr(),
       tags$h4('Thank you for choosing our tool. We hope you have a great experience with the dashboard!'),
       tags$hr(),
-      tags$h5(tags$b('Created by: '), 'Emily Dzwil, Thu Dao, Trang Tran'),
-      tags$h5('Final project for CS590V - Data Visualization'),
+      tags$h5(tags$b('Authors: '), 'Emily Dzwil, Thu Dao, Trang Tran'),
+      tags$h5('Final Project for CS590V - Data Visualization'),
+      tags$h5('College of Information & Computer Sciences'),
       tags$h5('April, 2020')
     ),
     width = '50%',
-    btn_colors = 'salmon',
+    btn_colors = '#881c1c',
     btn_labels = "Let's explore!",
     html = TRUE
   )
@@ -61,14 +62,14 @@ server <- function(input, output, session) {
                   selection = 'single') %>%
       formatStyle(
         'sat_avg',
-        background = styleColorBar(selectedData()$sat_avg, 'lightsteelblue'),
+        background = styleColorBar(selectedData()$sat_avg, '#B8E2F2'),
         backgroundSize = '95% 80%',
         backgroundRepeat = 'no-repeat',
         backgroundPosition = 'center'
       ) %>%
       formatStyle(
         'act_avg',
-        background = styleColorBar(selectedData()$act_avg, 'lightpink'),
+        background = styleColorBar(selectedData()$act_avg, '#ffc3c3'),
         backgroundSize = '95% 80%',
         backgroundRepeat = 'no-repeat',
         backgroundPosition = 'center'

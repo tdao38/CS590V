@@ -2,18 +2,37 @@ ui <- dashboardPage(
   #skin = 'red',
   # Application title
   dashboardHeader(
+    tags$li(class = "dropdown",
+            tags$style(".main-header {max-height: 53px}"),
+            tags$style(".main-header .logo {height: 53px}")
+    ),
     title = "US Higher Education",
     titleWidth = 300,
     tags$li(a(href = "https://www.cics.umass.edu//",
               img(src = 'mm.png',
-                  title = "CICS", height = "38px"),
-              style = "padding-top:6px; padding-bottom:1px;"),
+                  title = "CICS", height = "39px"),
+              style = "padding-top:7px; padding-bottom:1px; padding-right:20px;"),
             class = "dropdown")
   ),
   dashboardSidebar(
+    tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #c4888a;
+                    border-top: 1px solid #c4888a ;
+                    border-bottom: 1px solid #c4888a ;}}")),
+    tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #c4888a;
+                    border-top: 1px solid #c4888a ;
+                    border-bottom: 1px solid #c4888a ;}}")),
+    tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-bar-edge, .js-irs-2 .irs-bar {background: #c4888a;
+                    border-top: 1px solid #c4888a ;
+                    border-bottom: 1px solid #c4888a ;}}}")),
+    tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-bar-edge, .js-irs-3 .irs-bar {background: #c4888a;
+                    border-top: 1px solid #c4888a ;
+                    border-bottom: 1px solid #c4888a ;}}}")),
+    tags$head(tags$style(HTML('.irs-from, .irs-to, .irs-single { background: #881c1c}'
+    ))
+    ),
     width = 300,
     sidebarMenu(
-      div(h4('Filter colleges by:')),
+      tags$h4('Filter colleges by:'),
       # menuItem("States", 
       #          tabName = "overview", 
       #          icon = icon("dashboard")),
@@ -91,7 +110,17 @@ ui <- dashboardPage(
                               background-color: #881c1c;
                               } 
                               .skin-blue .main-header .navbar .sidebar-toggle:hover{
-                              background-color: #ffcccb;
+                              background-color: #c4888a;
+                              }
+                              .skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
+                              background-color: #881c1c;
+                              }.
+                              .skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
+                              background-color: #c4888a;
+                              }
+                              .skin-blue .sidebar-menu > li.active > a,
+                              .skin-blue .sidebar-menu > li:hover > a {
+                              border-left-color: #881c1c;
                               }
                               '))),
     fluidRow(
