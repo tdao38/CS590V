@@ -103,7 +103,36 @@ ui <- dashboardPage(
           class = 'panel panel-danger',
           tags$div(
             class = 'panel-body',
-            dataTableOutput('schools_tb_output')
+            dataTableOutput('schools_tb_output') %>% withSpinner(color = '#881c1c', type = 6)
+          )
+        )
+      ),
+      column(
+        width = 5,
+        tags$h3('School type'),
+        tags$h6('Public and private school distribution in the chosen states'),
+        tags$div(
+          class = 'panel panel-danger',
+          tags$div(
+            class = 'panel-body',
+            #h4('Aid scatterplot'),
+            tags$br(),
+            plotlyOutput('school_type_plot', height = '450px') %>% withSpinner(color = '#881c1c', type = 6),
+            tags$br()
+          )
+        )
+      )
+    ),
+    fluidRow(
+      column(
+        width = 7,
+        tags$h3('Salary'),
+        tags$h6('Average mid career salary of these schools'),
+        tags$div(
+          class = 'panel panel-danger',
+          tags$div(
+            class = 'panel-body',
+            tags$h4('Place holder for salary plot')
           )
         )
       ),
@@ -128,7 +157,7 @@ ui <- dashboardPage(
               animation = 'smooth',
               bigger = TRUE
             ),
-            plotlyOutput('aidScatterPlot'),
+            plotlyOutput('aidScatterPlot') %>% withSpinner(color = '#881c1c', type = 6),
             tags$br()
           )
         )
@@ -142,23 +171,44 @@ ui <- dashboardPage(
           class = 'panel panel-danger',
           tags$div(
             class = 'panel-body',
-            leafletOutput(outputId = 'map')
+            leafletOutput(outputId = 'map') %>% withSpinner(color = '#881c1c', type = 6)
           )
         )
       ),
       column(
         width = 5,
+        tags$head(tags$style(HTML('.small-box {height: 65px; width: 155px;} 
+                                  .small-box h3 {font-size: 22px;}
+                                  .small-box p {font-size: 14px;}
+                                  .small_icon_test { font-size: 26px;}'))),
         tags$h3('State Information'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
             class = 'panel-body',
-            valueBoxOutput('popBox',width = 6),
-            valueBoxOutput('USPop',width = 6),
-            valueBoxOutput('incomeBox', width = 6),
-            valueBoxOutput('USincome', width = 6),
-            valueBoxOutput('unempBox', width = 6),
-            valueBoxOutput('USunem', width = 6)
+            uiOutput('radioState'),
+            fluidRow(
+              valueBoxOutput('popBox', width = 4),
+              valueBoxOutput('incomeBox', width =4),
+              valueBoxOutput('unempBox', width =4)
+            ),
+            fluidRow(
+              column(
+                width = 6,
+                plotlyOutput('race_plot', width = "245px", height="245px") %>% withSpinner(color = '#881c1c', type = 6)
+              ),
+              column(
+                width = 6,
+                plotlyOutput('job_type_plot', width = "245px", height="245px") %>% withSpinner(color = '#881c1c', type = 6)
+              )
+            )
+            # valueBoxOutput('popBox',width = 2),
+            # valueBoxOutput('USPop',width = 2),
+            # valueBoxOutput('incomeBox', width =2),
+            # valueBoxOutput('USincome', width = 6),
+            # valueBoxOutput('unempBox', width = 6),
+            # valueBoxOutput('USunem', width = 6)
+            #uiOutput("tabs")
           )
         )
       )

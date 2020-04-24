@@ -116,6 +116,31 @@ server <- function(input, output, session) {
     }
   })  
   
+  output$school_type_plot <- renderPlotly({
+    school_type_plot <- school_type %>%
+      filter(state_name %in% input$state_input) %>%
+      group_by(state_name) %>%
+      mutate(countT = sum(count)) %>%
+      group_by(institutional_control, add = TRUE) %>%
+      mutate(pct=round(100*count/countT)) %>%
+      ggplot(aes(x = state, 
+                 y = pct, 
+                 fill = institutional_control,
+                 width = 0.3,
+                 text = paste('State: ', state.name[match(state, state.abb)],
+                              '<br>School type: ', institutional_control,
+                              '<br>Percentage: ', pct, '%'))) +
+      geom_col(position = 'stack', width = 0.4) +
+      scale_fill_brewer(palette = 'Pastel1') +
+      #scale_fill_manual(values = c('cornflowerblue', 'salmon')) +
+      theme_bw()
+
+    ggplotly(school_type_plot) %>%
+      layout(legend = list(orientation = "h", 
+                           x = 0.30,  
+                           y = 10)) 
+  })
+  
   output$aidScatterPlot <- renderPlotly({
     #browser()
     selected_cost_type <- input$cost_type
@@ -162,73 +187,169 @@ server <- function(input, output, session) {
       addMarkers(~selectedData()$long, ~selectedData()$lat, label = selectedData()$display_name)
   })
   
-  
-  output$popBox <- renderValueBox({
-    income_df %>%
-      filter(state == tolower(input$state_input)) %>%
-      #select(Pop) %>%
-      .$Pop %>%
-      format(big.mark=",",scientific=FALSE) %>%
-      valueBox(
-        subtitle = "State Population",
-        color = "blue",
-        icon = icon("users")
-      )
-  })
-  
-  output$USPop <- renderValueBox({
-    valueBox(
-      subtitle = "U.S. Population (2017)",
-      "325.1 mil",
-      color = "blue"
+  output$radioState <- renderUI({
+    options <- c(state.abb[match(input$state_input, state.name)])
+    # The options are dynamically generated on the server
+    prettyRadioButtons(
+      inputId = 'state_radio',
+      label = 'More state info of',
+      choices = options,
+      shape = 'round',
+      status = 'danger',
+      inline = TRUE,
+      animation = 'smooth'
     )
   })
   
-
   output$incomeBox <- renderValueBox({
+    #browser()
     income %>%
-      filter(state == tolower(input$state_input)) %>%
+      filter(state_name == state.name[match(input$state_radio, state.abb)]) %>%
       #select(AvgIncome) %>%
-      .$AvgIncome %>%
+      .$avg_income %>%
       scales::dollar() %>%
       valueBox(
         subtitle = "Average Income",
         color = "green",
-        icon = icon("dollar-sign")
+        icon = icon("dollar-sign", class = "small_icon_test")
       )
   })
   
-  output$USincome <- renderValueBox({
-    valueBox(
-      subtitle = "U.S. Median Income (2017)",
-      "$61,372",
-      color = "green"
-    )
-  })
-
   output$unempBox <- renderValueBox({
+    #browser()
     income %>%
-      filter(state == tolower(input$state_input)) %>%
-      mutate(AvgUnemployment = AvgUnemployment/100) %>%
+      filter(state_name == state.name[match(input$state_radio, state.abb)]) %>%
+      mutate(avg_unemployment = avg_unemployment/100) %>%
       #select(AvgUnemployment) %>%
-      .$AvgUnemployment %>%
+      .$avg_unemployment %>%
       percent() %>%
       valueBox(
         subtitle = "Average Unemployment",
-        color = "orange",
-        icon = icon("stats",lib='glyphicon')
+        color = "red",
+        icon = icon("stats",lib='glyphicon', class = "small_icon_test")
+      )
+  })
+
+  output$popBox <- renderValueBox({
+    income %>%
+      filter(state_name == state.name[match(input$state_radio, state.abb)]) %>%
+      #select(Pop) %>%
+      .$pop %>%
+      format(big.mark=",",scientific=FALSE) %>%
+      valueBox(
+        subtitle = "Total Population",
+        color = "purple",
+        icon = icon("users", class = "small_icon_test")
       )
   })
   
-  output$USunem <- renderValueBox({
-    valueBox(
-      subtitle = "U.S. Unemployment (2017)",
-      "4.1%",
-      color = "orange"
-    )
+  output$race_plot <- renderPlotly({
+    race %>%
+      filter(state_name == state.name[match(input$state_radio, state.abb)]) %>%
+      plot_ly(labels = ~race,
+              values = ~pct,
+              hovertemplate = "%{label}: %{percent}",
+              name = '',
+              marker = list(colors = brewer.pal(5, 'Set2'))) %>%
+      add_pie(hole = 0.6) %>%
+      hide_legend() %>%
+      layout(annotations = list (text = 'Race <br> breakdown',
+                                 font = list(size = 13),
+                                 showarrow = F,
+                                 xref = 'paper', x = 0.5,
+                                 yref = 'paper', y = 0.5),
+             margin = list(l = 20, r = 20, b = 0, t = 0, pad = 0))
   })
+   
+  output$job_type_plot <- renderPlotly({
+    job_type %>%
+      filter(state_name == state.name[match(input$state_radio, state.abb)]) %>%
+      plot_ly(labels = ~job_type,
+              values = ~pct,
+              hovertemplate = "%{label}: %{percent}",
+              name = '',
+              textposition = 'inside',
+              marker = list(colors = brewer.pal(5, 'Set2'))) %>%
+      add_pie(hole = 0.6) %>%
+      hide_legend() %>%
+      layout(annotations = list (text = 'Job type <br> breakdown',
+                                 font = list(size = 13),
+                                 showarrow = F,
+                                 xref = 'paper', x = 0.5,
+                                 yref = 'paper', y = 0.5),
+             margin = list(l = 20, r = 20, b = 0, t = 0, pad = 0))
+      # layout(legend = list(x = 0.25,
+      #                      y = 0.25))
+  })
+  # output$USincome <- renderValueBox({
+  #   valueBox(
+  #     subtitle = "U.S. Median Income (2017)",
+  #     "$61,372",
+  #     color = "green"
+  #   )
+  # })
+  # 
+  # 
+  # output$USPop <- renderValueBox({
+  #   valueBox(
+  #     subtitle = "U.S. Population (2017)",
+  #     "325.1 mil",
+  #     color = "blue"
+  #   )
+  # })
+  # 
+  # 
+  # output$USunem <- renderValueBox({
+  #   valueBox(
+  #     subtitle = "U.S. Unemployment (2017)",
+  #     "4.1%",
+  #     color = "orange"
+  #   )
+  # })
+  # tabs_content <- reactive({
+  #   #browser()
+  #   req(input$state_input)
+  #   chosen_state_abb <- state.abb[match(input$state_input, state.name)]
+  #   #return()
+  #   tabs_content <- list()
+  #   # tabs_content$Title <- list()
+  #   # tabs_content$Content <- list()
+  #   for (i in seq(length(chosen_state_abb))){
+  #     tabs_content[[i]] <- list(Title = chosen_state_abb[i], Content = 'Hellooo')
+  #     #tabs_content <- c(tabs_content, to_append)
+  #   }
+  #   return(tabs_content)
+  #   # tabs.content <- list(list(Title = "Tab1", Content = "Tab1 content"),
+  #   #                      list(Title = "Tab2", Content = "Tab2 content"),
+  #   #                      list(Title = "Tab3", Content = "Tab3 content"))
+  # })
+  
+  # output$school_type_plot <- renderPlot({
+  #   school_type %>%
+  #     filter(state_name == state.name[match(tabs_content()[[1]]$Title, state.abb)]) %>%
+  #     group_by(state_name) %>%
+  #     mutate(countT = sum(count)) %>%
+  #     group_by(institutional_control, add = TRUE) %>%
+  #     mutate(pct=round(100*count/countT)) %>%
+  #     ggplot(aes(x = state_name, y = pct, fill = institutional_control)) +
+  #     geom_col(position = 'stack', width = 0.4) +
+  #     scale_fill_brewer(palette = 'Pastel1') +
+  #     theme_bw()
+  # })
   
   
+  # tabs.content <- list(list(Title = "Tab1", Content = "Tab1 content"),
+  #                      list(Title = "Tab2", Content = "Tab2 content"),
+  #                      list(Title = "Tab3", Content = "Tab3 content"))
+  # 
+  # output$tabs <- renderUI({
+  #   browser()
+  #   
+  #     tabs <- lapply(1:length(tabs_content()), function(i) tabPanel(tabs_content()[[i]]$Title, 
+  #                                                                   #tabs_content()[[i]]$Content,
+  #                                                                   plotOutput('school_type_plot')))
+  #     do.call(tabBox, tabs)
+  # })
   
   
   
@@ -241,12 +362,7 @@ server <- function(input, output, session) {
   #     distinct(NAME)
   #   print(spatial_df@data)
   # }) 
-
   
-  
-
-  
-
   # output$distPlot <- renderPlot({
   #   # generate bins based on input$bins from ui.R
   #   all_states <- map_data("state")
@@ -259,18 +375,6 @@ server <- function(input, output, session) {
   #     theme_nothing()
   # })
   # 
-  # output$popBox <- renderValueBox({
-  #   income %>%
-  #     filter(state == tolower(input$statePicker)) %>%
-  #     #select(Pop) %>%
-  #     .$Pop %>%
-  #     format(big.mark=",",scientific=FALSE) %>%
-  #     valueBox(
-  #       subtitle = "Total Population",
-  #       color = "blue",
-  #       icon = icon("users")
-  #     )
-  # })
   # 
   # output$incomeBox <- renderValueBox({
   #   income %>%
