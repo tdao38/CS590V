@@ -171,7 +171,7 @@ ui <- dashboardPage(
           class = 'panel panel-danger',
           tags$div(
             class = 'panel-body',
-            leafletOutput(outputId = 'map')
+            leafletOutput(outputId = 'map') %>% withSpinner(color = '#881c1c', type = 6)
           )
         )
       ),
