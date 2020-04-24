@@ -6,7 +6,7 @@ server <- function(input, output, session) {
     text = tags$span(
       icon('school', "fa-3x"),
       tags$hr(),
-      tags$h4('This visualization dashboard provides an overview about higher education in the United States.'), 
+      tags$h4('This dashboard provides an overview about higher education in the United States.'), 
       tags$h4('It can be an useful tool for people interested in exploring the overall academics scenario in the US,
               especially for high school students or international students, who are in the process of
               choosing potential colleges or estimating the scope of the college application competition.'),
@@ -15,12 +15,13 @@ server <- function(input, output, session) {
       tags$hr(),
       tags$h4('Thank you for choosing our tool. We hope you have a great experience with the dashboard!'),
       tags$hr(),
-      tags$h5(tags$b('Created by: '), 'Emily Dzwil, Thu Dao, Trang Tran'),
-      tags$h5('Final project for CS590V - Data Visualization'),
+      tags$h5(tags$b('Authors: '), 'Emily Dzwil, Thu Dao, Trang Tran'),
+      tags$h5('Final Project for CS590V - Data Visualization'),
+      tags$h5('College of Information & Computer Sciences'),
       tags$h5('April, 2020')
     ),
     width = '50%',
-    btn_colors = 'salmon',
+    btn_colors = '#881c1c',
     btn_labels = "Let's explore!",
     html = TRUE
   )
@@ -61,14 +62,14 @@ server <- function(input, output, session) {
                   selection = 'single') %>%
       formatStyle(
         'sat_avg',
-        background = styleColorBar(selectedData()$sat_avg, 'lightsteelblue'),
+        background = styleColorBar(selectedData()$sat_avg, '#B8E2F2'),
         backgroundSize = '95% 80%',
         backgroundRepeat = 'no-repeat',
         backgroundPosition = 'center'
       ) %>%
       formatStyle(
         'act_avg',
-        background = styleColorBar(selectedData()$act_avg, 'lightpink'),
+        background = styleColorBar(selectedData()$act_avg, '#ffc3c3'),
         backgroundSize = '95% 80%',
         backgroundRepeat = 'no-repeat',
         backgroundPosition = 'center'
@@ -104,13 +105,15 @@ server <- function(input, output, session) {
           tags$br(),
           tags$b('Acceptance rate: '), paste0(subset_df$acceptance_rate, '%'),
           tags$br(),
-          tags$b('Tuition: '), paste0(format(subset_df$tuition, big.mark = ',', scientific = FALSE), '$'),
+          tags$b('Tuition: '), paste0('$', format(subset_df$tuition, big.mark = ',', scientific = FALSE)),
           tags$br(),
           tags$b('Percent Receiving Aid: '), paste0(subset_df$percent_receiving_aid, '%'),
           tags$br(),
-          tags$b('Cost after aid: '), paste0(format(subset_df$cost_after_aid, big.mark = ',', scientific = FALSE), '$')
+          tags$b('Cost after aid: '), paste0('$',format(subset_df$cost_after_aid, big.mark = ',', scientific = FALSE))
         ),
         width = '40%',
+        btn_colors = '#881c1c',
+        btn_labels = "Close",
         html = TRUE
       )
     }
@@ -130,10 +133,9 @@ server <- function(input, output, session) {
                  text = paste('State: ', state.name[match(state, state.abb)],
                               '<br>', pct, '% ', institutional_control, ' colleges'))) +
       geom_col(position = 'stack', width = 0.4) +
-      scale_fill_brewer(palette = 'Pastel1') +
       ylab('Percentage') +
       xlab('State(s)') +
-      #scale_fill_manual(values = c('cornflowerblue', 'salmon')) +
+      scale_fill_manual(values = c('#B8E2F2', '#ffc3c3')) +
       theme_bw()
 
     ggplotly(school_type_plot, tooltip = 'text') %>%
@@ -149,13 +151,14 @@ server <- function(input, output, session) {
       ggplot(aes(x = percent_receiving_aid,
                  y = acceptance_rate,
                  text = paste('School: ', display_name,
-                              '<br>Acceptance rate: ', acceptance_rate, '%',
-                              '<br>Percent receiving aid: ', percent_receiving_aid, '%',
-                              '<br>Tuition: ', format(tuition, big.mark = ',', scientific = FALSE), '$',
-                              '<br>Cost after aid: ', format(cost_after_aid, big.mark = ',', scientific = FALSE), '$'))) +
-      geom_point(aes(size = selectedData()[[selected_cost_type]], fill = institutional_control, alpha = 0.5)) +
+                              '<br>Acceptance rate: ', paste0(acceptance_rate, '%'),
+                              '<br>Percent receiving aid: ', paste0(percent_receiving_aid, '%'),
+                              '<br>Tuition: ', paste0('$', format(tuition, big.mark = ',', scientific = FALSE)),
+                              '<br>Cost after aid: ', paste0('$', format(cost_after_aid, big.mark = ',', scientific = FALSE))))) +
+      geom_point(aes(size = selectedData()[[selected_cost_type]], fill = institutional_control, alpha = 1.2)) +
       ylab('Acceptance Rate') +
       xlab('Percent Receiving Aid') +
+      scale_fill_manual(values = c('#ffc3c3','#B8E2F2'))+
       #scale_size_continuous(range = c(4, 7)) +
       # scale_y_continuous(expand=c(0,0)) +
       # coord_cartesian(clip = 'off') +
@@ -210,8 +213,11 @@ server <- function(input, output, session) {
       .$avg_income %>%
       scales::dollar() %>%
       valueBox(
-        subtitle = "Average Income",
-        color = "green",
+        #subtitle = "Average Income",
+        subtitle = renderUI({
+          HTML(paste("State Average Income", "$61,372 (U.S)", sep="<br/>"))
+        }),
+        color = "red",
         icon = icon("dollar-sign", class = "small_icon_test")
       )
   })
@@ -225,8 +231,11 @@ server <- function(input, output, session) {
       .$avg_unemployment %>%
       percent() %>%
       valueBox(
-        subtitle = "Average Unemployment",
-        color = "red",
+        #subtitle = "Unemployment 4.1% (U.S)",
+        subtitle = renderUI({
+          HTML(paste("State Unemployment", "4.1% (U.S)", sep="<br/>"))
+        }),
+        color = "blue",
         icon = icon("stats",lib='glyphicon', class = "small_icon_test")
       )
   })
@@ -238,7 +247,10 @@ server <- function(input, output, session) {
       .$pop %>%
       format(big.mark=",",scientific=FALSE) %>%
       valueBox(
-        subtitle = "Total Population",
+        #subtitle = "State Population",
+        subtitle = renderUI({
+          HTML(paste("State Population", "325,100,000 (U.S)", sep="<br/>"))
+        }),
         color = "purple",
         icon = icon("users", class = "small_icon_test")
       )
