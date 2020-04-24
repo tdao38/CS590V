@@ -62,14 +62,14 @@ server <- function(input, output, session) {
                   selection = 'single') %>%
       formatStyle(
         'sat_avg',
-        background = styleColorBar(selectedData()$sat_avg, '#B8E2F2'),
+        background = styleColorBar(selectedData()$sat_avg, '#F2B349'),
         backgroundSize = '95% 80%',
         backgroundRepeat = 'no-repeat',
         backgroundPosition = 'center'
       ) %>%
       formatStyle(
         'act_avg',
-        background = styleColorBar(selectedData()$act_avg, '#ffc3c3'),
+        background = styleColorBar(selectedData()$act_avg, '#BABACA'),
         backgroundSize = '95% 80%',
         backgroundRepeat = 'no-repeat',
         backgroundPosition = 'center'
@@ -135,7 +135,7 @@ server <- function(input, output, session) {
       geom_col(position = 'stack', width = 0.4) +
       ylab('Percentage') +
       xlab('State(s)') +
-      scale_fill_manual(values = c('#B8E2F2', '#ffc3c3')) +
+      scale_fill_manual(values = c('#b5584e', '#42ad96')) +
       theme_bw()
 
     ggplotly(school_type_plot, tooltip = 'text') %>%
@@ -158,7 +158,7 @@ server <- function(input, output, session) {
       geom_point(aes(size = selectedData()[[selected_cost_type]], fill = institutional_control, alpha = 1.2)) +
       ylab('Acceptance Rate') +
       xlab('Percent Receiving Aid') +
-      scale_fill_manual(values = c('#ffc3c3','#B8E2F2'))+
+      scale_fill_manual(values = c('#b5584e', '#42ad96'))+
       #scale_size_continuous(range = c(4, 7)) +
       # scale_y_continuous(expand=c(0,0)) +
       # coord_cartesian(clip = 'off') +
