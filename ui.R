@@ -160,12 +160,11 @@ ui <- dashboardPage(
       column(
         width = 7,
         tags$h3('Salary'),
-        tags$h6('Average mid career salaries after graduating from these schools'),
+        tags$h6('Average Mid Career Salaries (10th, 25th, Median, 75th, 90th percentiles) broken down by school'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
             class = 'panel-body',
-            tags$h4('Average Mid Career Salaries (10th, 25th, Median, 75th, 90th percentiles) broken down by school'),
             plotlyOutput('incomeScatterplot'),
             tags$br()
           )
@@ -239,13 +238,6 @@ ui <- dashboardPage(
                 plotlyOutput('job_type_plot', width = "245px", height="245px") %>% withSpinner(color = '#881c1c', type = 6)
               )
             )
-            # valueBoxOutput('popBox',width = 2),
-            # valueBoxOutput('USPop',width = 2),
-            # valueBoxOutput('incomeBox', width =2),
-            # valueBoxOutput('USincome', width = 6),
-            # valueBoxOutput('unempBox', width = 6),
-            # valueBoxOutput('USunem', width = 6)
-            #uiOutput("tabs")
           )
         )
       )
