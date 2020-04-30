@@ -160,12 +160,14 @@ ui <- dashboardPage(
       column(
         width = 7,
         tags$h3('Salary'),
-        tags$h6('Average mid career salary of these schools'),
+        tags$h6('Average mid career salaries after graduating from these schools'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
             class = 'panel-body',
-            tags$h4('Place holder for salary plot')
+            tags$h4('Average Mid Career Salaries (10th, 25th, Median, 75th, 90th percentiles) broken down by school'),
+            plotlyOutput('incomeScatterplot'),
+            tags$br()
           )
         )
       ),
