@@ -178,9 +178,10 @@ server <- function(input, output, session) {
     #browser()
     chosen_schools <- selectedData()$display_name
     selected_school_income <- school_income %>%
-      filter(display_name %in% chosen_schools)
+      filter(display_name %in% chosen_schools) %>%
+      arrange(variable, value)
     p <- ggplot(data = selected_school_income, aes(x = value, y = display_name, color = variable, text =paste0('Salary: $', format(value, big.mark = ',', scientific = FALSE))))+
-      geom_point() + theme_bw() + scale_color_manual(values = c('#B5584E','#42AD96','#BABACA', '#808080','#F2B349'), labels = c("1", "2", "3", "4", "5")) + 
+      geom_point() + theme_bw() + scale_color_manual(values = c('#B5584E','#42AD96','#BABACA', '#F2B349', '#808080')) + 
       labs(y = "School Name", x = "Salary ($)")
     
     ggplotly(p, tooltip = "text") %>%
