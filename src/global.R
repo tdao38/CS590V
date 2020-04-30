@@ -1,29 +1,11 @@
-# library(shinydashboard)
-# library(tidyverse)
-# library(usmap)
-# library(ggplot2)
-# library(ggmap)
-# library(ggrepel)
-# library(GGally)
-# library(plotly)
-# library(shiny)
-# library(scales)
-# library(shinyWidgets)
-# library(shinythemes)
-# library(shinyjs)
-# library(janitor)
-# library(DT)
-
-#source('~/UMass/CS590V/final_shiny/utils.R', echo = TRUE)
 source('utils.R', echo = TRUE)
 
-packages(c("shinydashboard", "tidyverse", "usmap", "ggplot2", "ggmap", "ggrepel", 
+packages(c("shinydashboard", "readr", "tidyverse", "ggplot2", "ggrepel", 
            "GGally", "plotly", "shiny", "scales", "shinyWidgets", "shinythemes",
            "shinyjs", "janitor", "DT","leaflet","sp","rgdal", "sf", "htmltools",
            "RColorBrewer", "shinycssloaders"))
 
 # Load data
-#school <- read_csv('data/school_raw.csv')
 school <- read_csv('data/school_new.csv')
 census <- read_csv('data/census_new.csv')
 income <- read_csv('data/income.csv')
@@ -31,6 +13,7 @@ race <- read_csv('data/race.csv')
 job_type <- read_csv('data/job_type.csv')
 school_type <- read_csv('data/school_type.csv')
 states <- readOGR(dsn = "data/cb_2016_us_state_500k.shp", encoding = "UTF-8", verbose = FALSE)
+
 # school_loc <- read.csv("data/hd2018.csv") %>% 
 #   select(INSTNM, LONGITUD, LATITUDE) %>% 
 #   rename(display_name = INSTNM,

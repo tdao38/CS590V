@@ -69,7 +69,7 @@ server <- function(input, output, session) {
       ) %>%
       formatStyle(
         'act_avg',
-        background = styleColorBar(selectedData()$act_avg, '#BABACA'),
+        background = styleColorBar(selectedData()$act_avg, '#B998B6'),
         backgroundSize = '95% 80%',
         backgroundRepeat = 'no-repeat',
         backgroundPosition = 'center'
@@ -135,7 +135,7 @@ server <- function(input, output, session) {
       geom_col(position = 'stack', width = 0.4) +
       ylab('Percentage') +
       xlab('State(s)') +
-      scale_fill_manual(values = c('#b5584e', '#42ad96')) +
+      scale_fill_manual(values = c('#cc7d7d', '#8DBFBB')) +
       theme_bw()
 
     ggplotly(school_type_plot, tooltip = 'text') %>%
@@ -158,7 +158,7 @@ server <- function(input, output, session) {
       geom_point(aes(size = selectedData()[[selected_cost_type]], fill = institutional_control, alpha = 1.2)) +
       ylab('Acceptance Rate') +
       xlab('Percent Receiving Aid') +
-      scale_fill_manual(values = c('#b5584e', '#42ad96'))+
+      scale_fill_manual(values = c('#cc7d7d', '#8DBFBB'))+
       #scale_size_continuous(range = c(4, 7)) +
       # scale_y_continuous(expand=c(0,0)) +
       # coord_cartesian(clip = 'off') +
@@ -183,9 +183,9 @@ server <- function(input, output, session) {
       addTiles() %>% 
       addProviderTiles(providers$Stamen.TonerLite) %>% 
       setView(-98.483330, 38.712046, zoom = 4) %>%
-      addPolygons(fillColor = "#881c1c",
+      addPolygons(fillColor = '#BE5959',
                   fillOpacity = 0.2,
-                  color="#881c1c",
+                  color='#881c1c',
                   weight = 0.3,
                   smoothFactor = 0.15) %>%
       addMarkers(~selectedData()$long, ~selectedData()$lat, label = selectedData()$display_name)
@@ -196,7 +196,7 @@ server <- function(input, output, session) {
     # The options are dynamically generated on the server
     prettyRadioButtons(
       inputId = 'state_radio',
-      label = 'More state info of',
+      label = 'More facts about',
       choices = options,
       shape = 'round',
       status = 'danger',
@@ -263,7 +263,7 @@ server <- function(input, output, session) {
               values = ~pct,
               hovertemplate = "%{label}: %{percent}",
               name = '',
-              marker = list(colors = c('#B5584E','#42AD96','#BABACA','#F2B349', '#808080', '#f2cece'))) %>%
+              marker = list(colors = c('#b998b6','#87B3D3','#8DBFBB','#F2B349','#cc7d7d'))) %>%
       add_pie(hole = 0.6) %>%
       hide_legend() %>%
       layout(annotations = list (text = 'Race <br> breakdown',
@@ -279,10 +279,10 @@ server <- function(input, output, session) {
       filter(state_name == state.name[match(input$state_radio, state.abb)]) %>%
       plot_ly(labels = ~job_type,
               values = ~pct,
-              hovertemplate = "%{label}: %{percent}",
+              hovertemplate = "%{label}: %{percent}</b><extra></extra>",
               name = '',
               textposition = 'inside',
-              marker = list(colors = c('#B5584E','#42AD96','#BABACA','#F2B349', '#808080'))) %>%
+              marker = list(colors = c('#8DBFBB','#F2B349','#cc7d7d','#b998b6', '#87B3D3'))) %>%
       add_pie(hole = 0.6) %>%
       hide_legend() %>%
       layout(annotations = list (text = 'Job type <br> breakdown',

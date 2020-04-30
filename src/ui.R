@@ -99,9 +99,9 @@ ui <- dashboardPage(
     )
   ),
   dashboardBody(
-    tags$style(".small-box.bg-red {background-color: #F2B349 !important; color: #ffffff !important; }"),
-    tags$style(".small-box.bg-purple {background-color: #42AD96 !important; color: #ffffff !important; }"),
-    tags$style(".small-box.bg-blue {background-color: #B5584E !important; color: #ffffff !important; }"),
+    tags$style(".small-box.bg-red {background-color: #F2B349 !important; color: #343434 !important; }"),
+    tags$style(".small-box.bg-purple {background-color: #8DBFBB !important; color: #343434 !important; }"),
+    tags$style(".small-box.bg-blue {background-color: #87B3D3 !important; color: #343434 !important; }"),
     tags$head(tags$style(HTML('
                             .skin-blue .main-header .logo {
                               background-color: #881c1c;
@@ -199,7 +199,8 @@ ui <- dashboardPage(
     fluidRow(
       column(
         width = 7,
-        tags$h3('Additional Information about Living and Working'),
+        tags$h3('Living and Working here'),
+        tags$h6('Zoom in/out, scroll around and hover over a pin to see where the schools are located'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
@@ -215,6 +216,7 @@ ui <- dashboardPage(
                                   .small-box p {font-size: 15px;}
                                   .small_icon_test { font-size: 35px;}'))),
         tags$h3('State Information'),
+        tags$h6('Hover over the pie chart to see the race/job type breakdowns'),
         tags$div(
           class = 'panel panel-danger',
           tags$div(
