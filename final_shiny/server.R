@@ -27,6 +27,7 @@ server <- function(input, output, session) {
   )
   
   selectedData <- reactive({
+    #browser()
     req(input$state_input,
         input$tuition_input,
         input$sat_input,
@@ -173,6 +174,18 @@ server <- function(input, output, session) {
                            y = -0.25)) 
   })
   
+  output$incomeScatterplot <- renderPlotly({
+    #browser()
+    chosen_schools <- selectedData()$display_name
+    selected_school_income <- school_income %>%
+      filter(display_name %in% chosen_schools)
+    p <- ggplot(data = selected_school_income, aes(x = value, y = display_name, color = variable, text =paste0('Salary: $', format(value, big.mark = ',', scientific = FALSE))))+
+      geom_point() + theme_bw() + scale_color_manual(values = c('#B5584E','#42AD96','#BABACA', '#808080','#F2B349'), labels = c("1", "2", "3", "4", "5")) + 
+      labs(y = "School Name", x = "Salary ($)")
+    
+    ggplotly(p, tooltip = "text") %>%
+      layout(legend = list(orientation = "h", x = 0.4, y = -1))
+  })
   
   output$map <- renderLeaflet({
     spatial_df <- merge(states, selectedData(), by.x = "NAME", by.y = "state_name", duplicateGeoms = T)
@@ -291,6 +304,8 @@ server <- function(input, output, session) {
                                  xref = 'paper', x = 0.5,
                                  yref = 'paper', y = 0.5),
              margin = list(l = 20, r = 20, b = 0, t = 0, pad = 0))
+    
+    
       # layout(legend = list(x = 0.25,
       #                      y = 0.25))
   })

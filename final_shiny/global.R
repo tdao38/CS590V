@@ -30,7 +30,12 @@ income <- read_csv('data/income.csv')
 race <- read_csv('data/race.csv')
 job_type <- read_csv('data/job_type.csv')
 school_type <- read_csv('data/school_type.csv')
+school_income <-read_csv('data/school_income.csv')
 states <- readOGR(dsn = "data/cb_2016_us_state_500k.shp", encoding = "UTF-8", verbose = FALSE)
+
+school_income$display_name <- gsub("--", " ", school_income$display_name)
+school_income$variable <- factor(school_income$variable, levels = c("Mid Career 10th Percentile Salary", "Mid Career 25th Percentile Salary", "Mid Career Median Salary", "Mid Career 75th Percentile Salary", "Mid Career 90th Percentile Salary"))
+school_income$value <-as.numeric(school_income$value)
 # school_loc <- read.csv("data/hd2018.csv") %>% 
 #   select(INSTNM, LONGITUD, LATITUDE) %>% 
 #   rename(display_name = INSTNM,
